@@ -1,0 +1,68 @@
+---
+title: "Building Beautiful UIs with shadcn/ui"
+date: "2024-04-22"
+excerpt: "Learn how to create stunning user interfaces using shadcn/ui components and Tailwind CSS for maximum design flexibility."
+---
+
+# Building Beautiful UIs with shadcn/ui
+
+shadcn/ui has revolutionized how we build React components by providing a copy-paste component library that you own completely.
+
+## Why shadcn/ui?
+
+Unlike traditional component libraries, shadcn/ui gives you:
+
+- **Full ownership** of your components
+- **Complete customization** capabilities
+- **No runtime dependencies**
+- **Built on Radix UI** for accessibility
+
+## Key Components
+
+### Button Component
+
+The button component is versatile and comes with multiple variants:
+
+```jsx
+import { Button } from "@/components/ui/button"
+
+export function ButtonDemo() {
+  return (
+    <div className="flex gap-4">
+      <Button variant="default">Default</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+    </div>
+  )
+}
+```
+
+### Card Component
+
+Cards provide a clean way to group related content:
+
+```jsx
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+
+export function CardDemo() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Card Title</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p>Card content goes here...</p>
+      </CardContent>
+    </Card>
+  )
+}
+```
+
+## Customization
+
+The beauty of shadcn/ui is in its customization. You can modify any component to fit your design system perfectly.
+
+## Conclusion
+
+shadcn/ui strikes the perfect balance between convenience and control, making it an excellent choice for modern React applications.
