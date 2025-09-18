@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
+import { calculateReadingTime, type ReadingTimeResult } from './reading-time'
 
 const contentDirectory = path.join(process.cwd(), 'content')
 
@@ -12,6 +13,7 @@ export interface BlogPost {
   content: string
   year: string
   order: number
+  readingTime: ReadingTimeResult
 }
 
 export function getAllYears(): string[] {
@@ -47,6 +49,8 @@ export function getPostsFromYear(year: string): BlogPost[] {
       .replace(/^\d+-/, '') // Remove order prefix
       .replace(/\.mdx$/, '') // Remove extension
 
+    const readingTime = calculateReadingTime(content)
+
     return {
       slug,
       title: data.title || slug,
@@ -54,7 +58,8 @@ export function getPostsFromYear(year: string): BlogPost[] {
       excerpt: data.excerpt || '',
       content,
       year,
-      order
+      order,
+      readingTime
     }
   })
 
