@@ -1,24 +1,26 @@
-import { notFound } from 'next/navigation'
-import { MDXRemote } from 'next-mdx-remote-client/rsc'
-import { getPostBySlug, getAllSlugs } from '@/lib/mdx'
+import { mdxComponents } from "@/components/mdx-components";
+import { getAllSlugs, getPostBySlug } from "@/lib/mdx";
+import { MDXRemote } from "next-mdx-remote-client/rsc";
+import { notFound } from "next/navigation";
+import rehypeHighlight from "rehype-highlight";
 
 interface PageProps {
-  params: Promise<{ slug: string }>
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  const slugs = getAllSlugs()
+  const slugs = getAllSlugs();
   return slugs.map((slug) => ({
     slug: slug,
-  }))
+  }));
 }
 
 export default async function BlogPost({ params }: PageProps) {
-  const { slug } = await params
-  const post = getPostBySlug(slug)
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
 
   if (!post) {
-    notFound()
+    notFound();
   }
 
   return (
@@ -33,8 +35,24 @@ export default async function BlogPost({ params }: PageProps) {
       </header>
 
       <div className="prose prose-zinc dark:prose-invert max-w-none">
-        <MDXRemote source={post.content} />
+        <MDXRemote
+          source={post.content}
+          components={mdxComponents}
+          options={{
+            mdxOptions: {
+              rehypePlugins: [
+                [
+                  rehypeHighlight,
+                  {
+                    detect: true,
+                    ignoreMissing: true,
+                  },
+                ],
+              ],
+            },
+          }}
+        />
       </div>
     </article>
-  )
+  );
 }

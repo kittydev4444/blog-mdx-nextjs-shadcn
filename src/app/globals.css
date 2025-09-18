@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "highlight.js/styles/github-dark.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -118,5 +119,100 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Override highlight.js styles to work with our theme */
+  .hljs {
+    background: transparent !important;
+    color: inherit !important;
+  }
+
+  /* Ensure code blocks have proper contrast */
+  pre code.hljs {
+    background: hsl(var(--muted) / 0.3) !important;
+    border-radius: 0.5rem;
+  }
+
+  /* Style syntax highlighting tokens for dark mode */
+  .dark .hljs-keyword,
+  .dark .hljs-selector-tag,
+  .dark .hljs-literal,
+  .dark .hljs-section,
+  .dark .hljs-link {
+    color: #569cd6 !important;
+  }
+
+  .dark .hljs-string,
+  .dark .hljs-attr {
+    color: #ce9178 !important;
+  }
+
+  .dark .hljs-number,
+  .dark .hljs-regexp,
+  .dark .hljs-addition {
+    color: #b5cea8 !important;
+  }
+
+  .dark .hljs-comment,
+  .dark .hljs-quote {
+    color: #6a9955 !important;
+  }
+
+  .dark .hljs-variable,
+  .dark .hljs-function,
+  .dark .hljs-title {
+    color: #dcdcaa !important;
+  }
+
+  .dark .hljs-type,
+  .dark .hljs-built_in {
+    color: #4ec9b0 !important;
+  }
+
+  /* Light mode syntax highlighting */
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-literal,
+  .hljs-section,
+  .hljs-link {
+    color: #0000ff !important;
+  }
+
+  .hljs-string,
+  .hljs-attr {
+    color: #a31515 !important;
+  }
+
+  .hljs-number,
+  .hljs-regexp,
+  .hljs-addition {
+    color: #098658 !important;
+  }
+
+  .hljs-comment,
+  .hljs-quote {
+    color: #008000 !important;
+  }
+
+  .hljs-variable,
+  .hljs-function,
+  .hljs-title {
+    color: #795e26 !important;
+  }
+
+  .hljs-type,
+  .hljs-built_in {
+    color: #267f99 !important;
+  }
+
+  /* Add spacing around prose code blocks
+  .prose pre {
+    @apply my-6;
+  } */
+
+  /* Ensure inline code doesn't get extra spacing */
+  .prose p code,
+  .prose li code {
+    @apply my-0;
   }
 }

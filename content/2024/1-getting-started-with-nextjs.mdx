@@ -11,6 +11,7 @@ Next.js 15 brings exciting new features and improvements that make building Reac
 ## What's New in Next.js 15
 
 ### Enhanced App Router
+
 The App Router continues to evolve with better performance and developer experience. Key improvements include:
 
 - **Improved routing performance**
@@ -18,24 +19,25 @@ The App Router continues to evolve with better performance and developer experie
 - **Enhanced streaming capabilities**
 
 ### React Server Components
+
 Server Components allow you to render components on the server, reducing the JavaScript bundle size and improving performance.
 
 ```jsx
 // This component runs on the server
 export default async function ServerComponent() {
-  const data = await fetch('https://api.example.com/data')
-  const posts = await data.json()
+  const data = await fetch("https://api.example.com/data");
+  const posts = await data.json();
 
   return (
     <div>
-      {posts.map(post => (
+      {posts.map((post) => (
         <article key={post.id}>
           <h2>{post.title}</h2>
           <p>{post.excerpt}</p>
         </article>
       ))}
     </div>
-  )
+  );
 }
 ```
 
