@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MDX Blog with Next.js and shadcn/ui
+
+A modern blog built with Next.js 15, MDX support, and shadcn/ui components. Features beautiful typography, syntax highlighting, and file tree visualization.
+
+## Tech Stack
+
+- **Framework**: Next.js 15 with App Router and TypeScript
+- **Build Tool**: Turbopack for faster development and builds
+- **Styling**: Tailwind CSS v4 with shadcn/ui components
+- **Content**: MDX for rich blog posts with React components
+- **Icons**: Lucide React
+- **Fonts**: Geist Sans and Geist Mono
+
+## Features
+
+- 🚀 Fast development with Turbopack
+- 📝 MDX support with custom components
+- 🎨 Beautiful UI with shadcn/ui components
+- 🌳 File tree visualization for code examples
+- 💻 Syntax highlighting with CodeBlock component
+- 📱 Responsive design
+- 🎯 TypeScript for type safety
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run the development server:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000) to view the blog.
 
-## Learn More
+## Development Commands
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Start development server with Turbopack
+pnpm run dev
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Build for production with Turbopack
+pnpm run build
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Start production server
+pnpm start
 
-## Deploy on Vercel
+# Run linting
+pnpm run lint
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+├── app/                 # Next.js App Router
+│   ├── layout.tsx      # Root layout with fonts
+│   └── page.tsx        # Homepage
+├── components/
+│   ├── ui/             # shadcn/ui components
+│   └── mdx-components.tsx  # Custom MDX components
+└── lib/
+    ├── utils.ts        # Utility functions (cn, etc.)
+    └── mdx.ts          # MDX processing utilities
+
+content/                # Blog posts in MDX format
+└── [year]/
+    └── *.mdx
+```
+
+## Writing Blog Posts
+
+Create MDX files in the `content/` directory. The blog supports:
+
+- **Code blocks** with syntax highlighting
+- **File trees** for directory structures
+- **Custom React components** within markdown
+- **Front matter** for post metadata
+
+Example MDX file:
+
+```mdx
+---
+title: "My Blog Post"
+date: "2024-01-01"
+---
+
+# Hello World
+
+Here's some code:
+
+\`\`\`javascript
+console.log("Hello, world!");
+\`\`\`
+
+And a file tree:
+
+\`\`\`tree
+src/
+├── components/
+│ └── ui/
+└── lib/
+\`\`\`
+```
+
+## Customization
+
+### Adding shadcn/ui Components
+
+```bash
+npx shadcn@latest add [component-name]
+```
+
+### Styling
+
+The project uses Tailwind CSS v4 with CSS variables for theming. Modify `src/app/globals.css` for global styles.
+
+### MDX Components
+
+Customize MDX rendering by editing `src/components/mdx-components.tsx`.
