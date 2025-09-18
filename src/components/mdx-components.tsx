@@ -1,5 +1,6 @@
 import type { MDXComponents } from 'mdx/types'
 import { CodeBlock } from '@/components/ui/code-block'
+import { FileTree } from '@/components/ui/file-tree'
 
 export const mdxComponents: MDXComponents = {
   pre: ({
@@ -27,15 +28,30 @@ export const mdxComponents: MDXComponents = {
       language = match ? match[1] : "";
     }
 
+    // Check if this is a file tree
+    const content = child && typeof child === "object" && child !== null && "props" in child
+      ? (child as { props: { children?: React.ReactNode } }).props.children
+      : children;
+
+    const contentStr = typeof content === 'string' ? content : '';
+
+    // Handle explicit "tree" language or detect tree patterns
+    const isFileTree = language === 'tree' || (!language && (
+      contentStr.includes('├──') ||
+      contentStr.includes('└──') ||
+      contentStr.includes('│') ||
+      contentStr.includes('├─') ||
+      contentStr.includes('└─') ||
+      (contentStr.includes('content/') && contentStr.includes('.mdx'))
+    ));
+
+    if (isFileTree) {
+      return <FileTree>{contentStr}</FileTree>;
+    }
+
     return (
       <CodeBlock data-language={language} {...props}>
-        {child &&
-        typeof child === "object" &&
-        child !== null &&
-        "props" in child
-          ? (child as { props: { children?: React.ReactNode } }).props
-              .children
-          : children}
+        {content}
       </CodeBlock>
     );
   },
