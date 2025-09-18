@@ -4,8 +4,6 @@ date: "2025-01-15"
 excerpt: "Learn how to create a powerful blog system using MDX for content authoring and Next.js for the frontend, with automatic content discovery."
 ---
 
-# Setting Up a Blog with MDX and Next.js
-
 MDX combines the power of Markdown with the flexibility of React components, making it perfect for technical blogs and documentation sites.
 
 ## Project Structure
@@ -24,13 +22,17 @@ content/
 ## Features
 
 ### Automatic Content Discovery
+
 The system automatically discovers all MDX files in the content directory and organizes them by year.
 
 ### Dynamic Routing
+
 Each blog post gets its own URL based on the filename (minus the order prefix):
+
 - `1-getting-started-with-nextjs.mdx` → `/blog/getting-started-with-nextjs`
 
 ### Frontmatter Support
+
 Each MDX file includes metadata in the frontmatter:
 
 ```yaml
@@ -44,18 +46,19 @@ excerpt: "A brief description of your post"
 ## Benefits of MDX
 
 ### 1. Markdown Simplicity
+
 Write content in familiar Markdown syntax.
 
 ### 2. React Component Integration
+
 Embed interactive React components directly in your content:
 
 ```jsx
-<Button onClick={() => alert('Hello!')}>
-  Click me!
-</Button>
+<Button onClick={() => alert("Hello!")}>Click me!</Button>
 ```
 
 ### 3. Syntax Highlighting
+
 Code blocks get automatic syntax highlighting for better readability.
 
 ## Getting Started

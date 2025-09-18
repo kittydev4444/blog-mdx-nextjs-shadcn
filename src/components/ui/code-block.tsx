@@ -46,7 +46,7 @@ export function CodeBlock({
   return (
     <div className="relative group">
       {language && (
-        <div className="flex items-center justify-between bg-muted/50 border border-b-0 rounded-t-lg px-4 py-2">
+        <div className="flex items-center justify-between bg-muted/50 border rounded-t-lg px-4 py-2 -mb-px">
           <span className="text-sm font-medium text-muted-foreground">
             {language}
           </span>
@@ -64,33 +64,27 @@ export function CodeBlock({
         </div>
       )}
 
-      <div
+      <pre
         className={cn(
-          "relative overflow-x-auto",
-          language ? "rounded-t-none" : "rounded-lg"
+          "bg-muted/30 border p-4 text-sm font-mono leading-relaxed overflow-x-auto relative !m-0",
+          language ? "rounded-t-none rounded-b-lg" : "rounded-lg",
+          className
         )}>
-        <pre
-          className={cn(
-            "bg-muted/30 border p-4 text-sm font-mono leading-relaxed overflow-x-auto",
-            language ? "rounded-t-none rounded-b-lg" : "rounded-lg",
-            className
-          )}>
-          {!language && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleCopy}
-              className="absolute top-2 right-2 h-6 w-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity">
-              {copied ? (
-                <Check className="h-3 w-3 text-green-500" />
-              ) : (
-                <Copy className="h-3 w-3" />
-              )}
-            </Button>
-          )}
-          <code className={cn("text-foreground", className)}>{children}</code>
-        </pre>
-      </div>
+        {!language && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleCopy}
+            className="absolute top-2 right-2 h-6 w-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity">
+            {copied ? (
+              <Check className="h-3 w-3 text-green-500" />
+            ) : (
+              <Copy className="h-3 w-3" />
+            )}
+          </Button>
+        )}
+        <code className={cn("text-foreground", className)}>{children}</code>
+      </pre>
     </div>
   );
 }

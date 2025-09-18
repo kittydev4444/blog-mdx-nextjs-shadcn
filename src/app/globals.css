@@ -205,12 +205,4 @@
   .hljs-built_in {
     color: #267f99 !important;
   }
-
-  /* Add spacing around prose code blocks
-  .prose pre {
-    @apply my-6;
-  } */
-
-  /* Let prose handle markdown syntax naturally */
-  /* Only override what's absolutely necessary for our code blocks */
 }
