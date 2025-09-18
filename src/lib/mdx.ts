@@ -14,6 +14,7 @@ export interface BlogPost {
   year: string
   order: number
   readingTime: ReadingTimeResult
+  published: boolean
 }
 
 export function getAllYears(): string[] {
@@ -25,7 +26,7 @@ export function getAllYears(): string[] {
   return years
 }
 
-export function getPostsFromYear(year: string): BlogPost[] {
+export function getPostsFromYear(year: string, includeUnpublished: boolean = false): BlogPost[] {
   const yearDirectory = path.join(contentDirectory, year)
 
   if (!fs.existsSync(yearDirectory)) {
@@ -59,17 +60,21 @@ export function getPostsFromYear(year: string): BlogPost[] {
       content,
       year,
       order,
-      readingTime
+      readingTime,
+      published: data.published ?? false
     }
   })
 
+  // Filter by published status unless includeUnpublished is true
+  const filteredPosts = includeUnpublished ? posts : posts.filter(post => post.published)
+
   // Sort by order number
-  return posts.sort((a, b) => a.order - b.order)
+  return filteredPosts.sort((a, b) => a.order - b.order)
 }
 
-export function getAllPosts(): BlogPost[] {
+export function getAllPosts(includeUnpublished: boolean = false): BlogPost[] {
   const years = getAllYears()
-  const allPosts = years.flatMap(year => getPostsFromYear(year))
+  const allPosts = years.flatMap(year => getPostsFromYear(year, includeUnpublished))
 
   // Sort by year (desc) then by order within year
   return allPosts.sort((a, b) => {
@@ -80,11 +85,11 @@ export function getAllPosts(): BlogPost[] {
   })
 }
 
-export function getPostBySlug(slug: string): BlogPost | null {
+export function getPostBySlug(slug: string, includeUnpublished: boolean = false): BlogPost | null {
   const years = getAllYears()
 
   for (const year of years) {
-    const posts = getPostsFromYear(year)
+    const posts = getPostsFromYear(year, includeUnpublished)
     const post = posts.find(p => p.slug === slug)
     if (post) {
       return post
@@ -94,6 +99,6 @@ export function getPostBySlug(slug: string): BlogPost | null {
   return null
 }
 
-export function getAllSlugs(): string[] {
-  return getAllPosts().map(post => post.slug)
+export function getAllSlugs(includeUnpublished: boolean = false): string[] {
+  return getAllPosts(includeUnpublished).map(post => post.slug)
 }
