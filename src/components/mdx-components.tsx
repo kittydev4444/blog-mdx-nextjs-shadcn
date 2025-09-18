@@ -2,14 +2,19 @@ import { CodeBlock } from "@/components/ui/code-block";
 import { FileTree } from "@/components/ui/file-tree";
 import type { MDXComponents } from "mdx/types";
 
+interface PreComponentProps {
+  children: React.ReactNode;
+  [key: string]: unknown;
+}
+
+interface CodeComponentProps {
+  children: React.ReactNode;
+  className?: string;
+  [key: string]: unknown;
+}
+
 export const mdxComponents: MDXComponents = {
-  pre: ({
-    children,
-    ...props
-  }: {
-    children: React.ReactNode;
-    [key: string]: unknown;
-  }) => {
+  pre: ({ children, ...props }: PreComponentProps) => {
     // Extract language from className (e.g., "language-javascript" -> "javascript")
     const child = Array.isArray(children) ? children[0] : children;
     let language = "";
@@ -57,15 +62,7 @@ export const mdxComponents: MDXComponents = {
       </CodeBlock>
     );
   },
-  code: ({
-    children,
-    className,
-    ...props
-  }: {
-    children: React.ReactNode;
-    className?: string;
-    [key: string]: unknown;
-  }) => {
+  code: ({ children, className, ...props }: CodeComponentProps) => {
     // Handle inline code
     if (!className) {
       return (
