@@ -44,7 +44,7 @@ export function CodeBlock({
   };
 
   return (
-    <div className="relative group">
+    <div className="relative group my-6">
       {language && (
         <div className="flex items-center justify-between bg-muted/50 border rounded-t-lg px-4 py-2 -mb-px">
           <span className="text-sm font-medium text-muted-foreground">
