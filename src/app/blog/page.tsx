@@ -1,10 +1,10 @@
-import Link from 'next/link'
-import { getAllPosts, getAllYears } from '@/lib/mdx'
+import { getAllPosts, getAllYears } from "@/lib/mdx";
+import Link from "next/link";
 
 export default function BlogPage() {
-  const posts = getAllPosts()
-  const years = getAllYears()
-
+  const posts = getAllPosts();
+  const years = getAllYears();
+  // dkfjkdsfj
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <header className="mb-12">
@@ -14,10 +14,10 @@ export default function BlogPage() {
         </p>
       </header>
 
-      {years.map(year => {
-        const yearPosts = posts.filter(post => post.year === year)
+      {years.map((year) => {
+        const yearPosts = posts.filter((post) => post.year === year);
 
-        if (yearPosts.length === 0) return null
+        if (yearPosts.length === 0) return null;
 
         return (
           <section key={year} className="mb-12">
@@ -26,12 +26,11 @@ export default function BlogPage() {
             </h2>
 
             <div className="space-y-6">
-              {yearPosts.map(post => (
+              {yearPosts.map((post) => (
                 <article key={post.slug} className="group">
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="block p-6 rounded-lg border border-border hover:border-ring transition-colors"
-                  >
+                    className="block p-6 rounded-lg border border-border hover:border-ring transition-colors">
                     <div className="flex items-start justify-between mb-3">
                       <h3 className="text-xl font-medium group-hover:text-primary transition-colors">
                         {post.title}
@@ -50,8 +49,7 @@ export default function BlogPage() {
                     {post.date && (
                       <time
                         dateTime={post.date}
-                        className="text-sm text-muted-foreground mt-3 block"
-                      >
+                        className="text-sm text-muted-foreground mt-3 block">
                         {post.date}
                       </time>
                     )}
@@ -60,7 +58,7 @@ export default function BlogPage() {
               ))}
             </div>
           </section>
-        )
+        );
       })}
 
       {posts.length === 0 && (
@@ -71,5 +69,5 @@ export default function BlogPage() {
         </div>
       )}
     </div>
-  )
+  );
 }
