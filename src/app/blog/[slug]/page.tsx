@@ -1,6 +1,9 @@
 import { mdxComponents } from "@/components/mdx-components";
+import { Button } from "@/components/ui/button";
 import { getAllSlugs, getPostBySlug } from "@/lib/mdx";
+import { ChevronLeft } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote-client/rsc";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import rehypeHighlight from "rehype-highlight";
 
@@ -25,12 +28,23 @@ export default async function BlogPost({ params }: PageProps) {
 
   return (
     <article className="max-w-4xl mx-auto px-4 py-8">
+      <Button variant="ghost" size="sm" className="mb-8" asChild>
+        <Link href="/" className="flex items-center gap-2">
+          <ChevronLeft className="h-4 w-4" />
+          Back to Home
+        </Link>
+      </Button>
+
       <header className="mb-8">
         <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
         <div className="flex items-center gap-4 text-muted-foreground">
-          <time dateTime={post.date}>{post.date}</time>
-          <span>•</span>
-          <span>{post.year}</span>
+          <time dateTime={post.date}>
+            {new Date(post.date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </time>
         </div>
       </header>
 

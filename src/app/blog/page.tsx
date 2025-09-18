@@ -4,7 +4,6 @@ import Link from "next/link";
 export default function BlogPage() {
   const posts = getAllPosts();
   const years = getAllYears();
-  // dkfjkdsfj
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <header className="mb-12">
