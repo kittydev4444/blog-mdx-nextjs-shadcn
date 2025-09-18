@@ -1,6 +1,6 @@
-import type { MDXComponents } from 'mdx/types'
-import { CodeBlock } from '@/components/ui/code-block'
-import { FileTree } from '@/components/ui/file-tree'
+import { CodeBlock } from "@/components/ui/code-block";
+import { FileTree } from "@/components/ui/file-tree";
+import type { MDXComponents } from "mdx/types";
 
 export const mdxComponents: MDXComponents = {
   pre: ({
@@ -29,21 +29,23 @@ export const mdxComponents: MDXComponents = {
     }
 
     // Check if this is a file tree
-    const content = child && typeof child === "object" && child !== null && "props" in child
-      ? (child as { props: { children?: React.ReactNode } }).props.children
-      : children;
+    const content =
+      child && typeof child === "object" && child !== null && "props" in child
+        ? (child as { props: { children?: React.ReactNode } }).props.children
+        : children;
 
-    const contentStr = typeof content === 'string' ? content : '';
+    const contentStr = typeof content === "string" ? content : "";
 
     // Handle explicit "tree" language or detect tree patterns
-    const isFileTree = language === 'tree' || (!language && (
-      contentStr.includes('├──') ||
-      contentStr.includes('└──') ||
-      contentStr.includes('│') ||
-      contentStr.includes('├─') ||
-      contentStr.includes('└─') ||
-      (contentStr.includes('content/') && contentStr.includes('.mdx'))
-    ));
+    const isFileTree =
+      language === "tree" ||
+      (!language &&
+        (contentStr.includes("├──") ||
+          contentStr.includes("└──") ||
+          contentStr.includes("│") ||
+          contentStr.includes("├─") ||
+          contentStr.includes("└─") ||
+          (contentStr.includes("content/") && contentStr.includes(".mdx"))));
 
     if (isFileTree) {
       return <FileTree>{contentStr}</FileTree>;
@@ -82,11 +84,11 @@ export const mdxComponents: MDXComponents = {
       </code>
     );
   },
-}
+};
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...mdxComponents,
     ...components,
-  }
+  };
 }
