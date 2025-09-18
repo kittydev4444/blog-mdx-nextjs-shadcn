@@ -1,0 +1,103 @@
+import { Clock, FileText, Calendar } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { formatWordCount, type ReadingTimeResult } from "@/lib/reading-time";
+
+interface PostMetaProps {
+  date: string;
+  readingTime: ReadingTimeResult;
+  year?: string;
+  variant?: "compact" | "full";
+  className?: string;
+}
+
+export function PostMeta({
+  date,
+  readingTime,
+  year,
+  variant = "compact",
+  className
+}: PostMetaProps) {
+  const formatDate = (dateString: string, format: "short" | "long" = "short") => {
+    return new Date(dateString).toLocaleDateString("en-US",
+      format === "short"
+        ? { month: "short", day: "numeric", year: "numeric" }
+        : { year: "numeric", month: "long", day: "numeric" }
+    );
+  };
+
+  if (variant === "compact") {
+    return (
+      <div className={cn("flex items-center gap-3 text-xs text-muted-foreground/70", className)}>
+        {year && (
+          <div className="flex items-center gap-1.5">
+            <div className="h-1.5 w-1.5 rounded-full bg-green-500" />
+            <span>{year}</span>
+          </div>
+        )}
+        <div className="flex items-center gap-1">
+          <Clock className="h-3 w-3" />
+          <span>{readingTime.text}</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <FileText className="h-3 w-3" />
+          <span>{formatWordCount(readingTime.words)}</span>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={cn("flex flex-wrap items-center gap-4 text-sm text-muted-foreground", className)}>
+      <time dateTime={date} className="flex items-center gap-1.5">
+        <Calendar className="h-4 w-4" />
+        {formatDate(date, "long")}
+      </time>
+      <div className="flex items-center gap-1.5">
+        <Clock className="h-4 w-4" />
+        <span>{readingTime.text}</span>
+      </div>
+      <div className="flex items-center gap-1.5">
+        <FileText className="h-4 w-4" />
+        <span>{formatWordCount(readingTime.words)}</span>
+      </div>
+    </div>
+  );
+}
+
+interface PostDateProps {
+  date: string;
+  variant?: "badge" | "inline";
+  className?: string;
+}
+
+export function PostDate({ date, variant = "badge", className }: PostDateProps) {
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric"
+    });
+  };
+
+  if (variant === "badge") {
+    return (
+      <div className={cn(
+        "shrink-0 rounded-full bg-muted/80 px-3 py-1.5 text-xs font-medium text-muted-foreground",
+        className
+      )}>
+        <time dateTime={date}>
+          {formatDate(date)}
+        </time>
+      </div>
+    );
+  }
+
+  return (
+    <time
+      dateTime={date}
+      className={cn("text-sm text-muted-foreground", className)}
+    >
+      {formatDate(date)}
+    </time>
+  );
+}
