@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-12 text-center">
-        <h1 className="text-4xl font-bold tracking-tight mb-4">
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-gradient-purple-green">
           Welcome to My Blog
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -27,8 +27,8 @@ export default function Home() {
         {posts.map((post) => (
           <Card
             key={`${post.year}-${post.slug}`}
-            className="group relative overflow-hidden border-0 bg-gradient-to-br from-card/50 to-card/30 backdrop-blur-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 hover:-translate-y-1">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            className="group relative overflow-hidden border-0 glass hover:shadow-solana transition-all duration-300 hover:-translate-y-1">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
             <CardHeader className="relative space-y-4 pb-4">
               <div className="flex flex-col gap-3">
