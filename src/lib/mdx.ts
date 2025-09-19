@@ -5,6 +5,8 @@ import { calculateReadingTime, type ReadingTimeResult } from './reading-time'
 
 const contentDirectory = path.join(process.cwd(), 'content')
 
+export type Language = 'en' | 'th'
+
 export interface BlogPost {
   slug: string
   title: string
@@ -15,10 +17,21 @@ export interface BlogPost {
   order: number
   readingTime: ReadingTimeResult
   published: boolean
+  language: Language
 }
 
-export function getAllYears(): string[] {
-  const years = fs.readdirSync(contentDirectory, { withFileTypes: true })
+export function getAvailableLanguages(): Language[] {
+  return ['en', 'th']
+}
+
+export function getAllYears(language: Language = 'en'): string[] {
+  const languageDirectory = path.join(contentDirectory, language)
+
+  if (!fs.existsSync(languageDirectory)) {
+    return []
+  }
+
+  const years = fs.readdirSync(languageDirectory, { withFileTypes: true })
     .filter(dirent => dirent.isDirectory())
     .map(dirent => dirent.name)
     .sort((a, b) => parseInt(b) - parseInt(a)) // Sort years descending
@@ -26,8 +39,8 @@ export function getAllYears(): string[] {
   return years
 }
 
-export function getPostsFromYear(year: string, includeUnpublished: boolean = false): BlogPost[] {
-  const yearDirectory = path.join(contentDirectory, year)
+export function getPostsFromYear(year: string, language: Language = 'en', includeUnpublished: boolean = false): BlogPost[] {
+  const yearDirectory = path.join(contentDirectory, language, year)
 
   if (!fs.existsSync(yearDirectory)) {
     return []
@@ -61,7 +74,8 @@ export function getPostsFromYear(year: string, includeUnpublished: boolean = fal
       year,
       order,
       readingTime,
-      published: data.published ?? false
+      published: data.published ?? false,
+      language
     }
   })
 
@@ -72,9 +86,9 @@ export function getPostsFromYear(year: string, includeUnpublished: boolean = fal
   return filteredPosts.sort((a, b) => a.order - b.order)
 }
 
-export function getAllPosts(includeUnpublished: boolean = false): BlogPost[] {
-  const years = getAllYears()
-  const allPosts = years.flatMap(year => getPostsFromYear(year, includeUnpublished))
+export function getAllPosts(language: Language = 'en', includeUnpublished: boolean = false): BlogPost[] {
+  const years = getAllYears(language)
+  const allPosts = years.flatMap(year => getPostsFromYear(year, language, includeUnpublished))
 
   // Sort by year (desc) then by order within year
   return allPosts.sort((a, b) => {
@@ -85,11 +99,11 @@ export function getAllPosts(includeUnpublished: boolean = false): BlogPost[] {
   })
 }
 
-export function getPostBySlug(slug: string, includeUnpublished: boolean = false): BlogPost | null {
-  const years = getAllYears()
+export function getPostBySlug(slug: string, language: Language = 'en', includeUnpublished: boolean = false): BlogPost | null {
+  const years = getAllYears(language)
 
   for (const year of years) {
-    const posts = getPostsFromYear(year, includeUnpublished)
+    const posts = getPostsFromYear(year, language, includeUnpublished)
     const post = posts.find(p => p.slug === slug)
     if (post) {
       return post
@@ -99,6 +113,20 @@ export function getPostBySlug(slug: string, includeUnpublished: boolean = false)
   return null
 }
 
-export function getAllSlugs(includeUnpublished: boolean = false): string[] {
-  return getAllPosts(includeUnpublished).map(post => post.slug)
+export function getAllSlugs(language: Language = 'en', includeUnpublished: boolean = false): string[] {
+  return getAllPosts(language, includeUnpublished).map(post => post.slug)
+}
+
+export function getPostAvailableLanguages(slug: string, includeUnpublished: boolean = false): Language[] {
+  const availableLanguages: Language[] = []
+
+  const languages: Language[] = ['en', 'th']
+  languages.forEach(lang => {
+    const post = getPostBySlug(slug, lang, includeUnpublished)
+    if (post) {
+      availableLanguages.push(lang)
+    }
+  })
+
+  return availableLanguages
 }

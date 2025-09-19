@@ -6,11 +6,21 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { getAllPosts } from "@/lib/mdx";
+import { defaultLanguage, isValidLanguage } from "@/lib/i18n";
+import { getAllPosts, getPostAvailableLanguages } from "@/lib/mdx";
+import { cookies } from "next/headers";
 import Link from "next/link";
 
-export default function Home() {
-  const posts = getAllPosts();
+export default async function Home() {
+  // Get language from cookie or default
+  const cookieStore = await cookies();
+  const savedLanguage = cookieStore.get("preferred-language")?.value;
+  const language =
+    savedLanguage && isValidLanguage(savedLanguage)
+      ? savedLanguage
+      : defaultLanguage;
+
+  const posts = getAllPosts(language);
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -74,6 +84,7 @@ export default function Home() {
                   readingTime={post.readingTime}
                   year={post.year}
                   variant="compact"
+                  availableLanguages={getPostAvailableLanguages(post.slug)}
                 />
               </div>
             </CardContent>

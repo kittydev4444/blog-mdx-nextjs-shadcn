@@ -1,12 +1,15 @@
-import { Clock, FileText, Calendar } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { formatWordCount, type ReadingTimeResult } from "@/lib/reading-time";
+import { cn } from "@/lib/utils";
+import { Calendar, Clock, FileText, Globe } from "lucide-react";
+import { type Language } from "@/lib/mdx";
+import { getLanguageLabel } from "@/lib/i18n";
 
 interface PostMetaProps {
   date: string;
   readingTime: ReadingTimeResult;
   year?: string;
   variant?: "compact" | "full";
+  availableLanguages?: Language[];
   className?: string;
 }
 
@@ -15,10 +18,15 @@ export function PostMeta({
   readingTime,
   year,
   variant = "compact",
-  className
+  availableLanguages,
+  className,
 }: PostMetaProps) {
-  const formatDate = (dateString: string, format: "short" | "long" = "short") => {
-    return new Date(dateString).toLocaleDateString("en-US",
+  const formatDate = (
+    dateString: string,
+    format: "short" | "long" = "short"
+  ) => {
+    return new Date(dateString).toLocaleDateString(
+      "en-US",
       format === "short"
         ? { month: "short", day: "numeric", year: "numeric" }
         : { year: "numeric", month: "long", day: "numeric" }
@@ -27,7 +35,11 @@ export function PostMeta({
 
   if (variant === "compact") {
     return (
-      <div className={cn("flex items-center gap-3 text-xs text-muted-foreground/70", className)}>
+      <div
+        className={cn(
+          "flex items-center gap-3 text-xs text-muted-foreground/70",
+          className
+        )}>
         {year && (
           <div className="flex items-center gap-1.5">
             <div className="h-1.5 w-1.5 rounded-full bg-green-500" />
@@ -42,12 +54,22 @@ export function PostMeta({
           <FileText className="h-3 w-3" />
           <span>{formatWordCount(readingTime.words)}</span>
         </div>
+        {availableLanguages && availableLanguages.length > 1 && (
+          <div className="flex items-center gap-1">
+            <Globe className="h-3 w-3" />
+            <span>{availableLanguages.length} langs</span>
+          </div>
+        )}
       </div>
     );
   }
 
   return (
-    <div className={cn("flex flex-wrap items-center gap-4 text-sm text-muted-foreground", className)}>
+    <div
+      className={cn(
+        "flex flex-wrap items-center gap-4 text-sm text-muted-foreground",
+        className
+      )}>
       <time dateTime={date} className="flex items-center gap-1.5">
         <Calendar className="h-4 w-4" />
         {formatDate(date, "long")}
@@ -60,6 +82,15 @@ export function PostMeta({
         <FileText className="h-4 w-4" />
         <span>{formatWordCount(readingTime.words)}</span>
       </div>
+      {availableLanguages && availableLanguages.length > 0 && (
+        <div className="flex items-center gap-1.5">
+          <Globe className="h-4 w-4" />
+          <span>
+            Available in: {availableLanguages.map(lang => getLanguageLabel(lang)).join(", ")}
+            {availableLanguages.length === 1 && " only"}
+          </span>
+        </div>
+      )}
     </div>
   );
 }
@@ -70,24 +101,27 @@ interface PostDateProps {
   className?: string;
 }
 
-export function PostDate({ date, variant = "badge", className }: PostDateProps) {
+export function PostDate({
+  date,
+  variant = "badge",
+  className,
+}: PostDateProps) {
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
       month: "short",
       day: "numeric",
-      year: "numeric"
+      year: "numeric",
     });
   };
 
   if (variant === "badge") {
     return (
-      <div className={cn(
-        "shrink-0 rounded-full bg-muted/80 px-3 py-1.5 text-xs font-medium text-muted-foreground",
-        className
-      )}>
-        <time dateTime={date}>
-          {formatDate(date)}
-        </time>
+      <div
+        className={cn(
+          "shrink-0 rounded-full bg-muted/80 px-3 py-1.5 text-xs font-medium text-muted-foreground",
+          className
+        )}>
+        <time dateTime={date}>{formatDate(date)}</time>
       </div>
     );
   }
@@ -95,8 +129,7 @@ export function PostDate({ date, variant = "badge", className }: PostDateProps) 
   return (
     <time
       dateTime={date}
-      className={cn("text-sm text-muted-foreground", className)}
-    >
+      className={cn("text-sm text-muted-foreground", className)}>
       {formatDate(date)}
     </time>
   );
