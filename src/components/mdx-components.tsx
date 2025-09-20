@@ -1,6 +1,18 @@
 import { CodeBlock } from "@/components/ui/code-block";
 import { FileTree } from "@/components/ui/file-tree";
 import { BlogImage } from "@/components/ui/blog-image";
+import {
+  StickyScrollDemo,
+  BasicStickyExample,
+  MultiStickyDemo,
+  InteractiveStickyDemo,
+  StickyScrollConclusion
+} from "@/components/ui/sticky-scroll-demo";
+import {
+  StickySection,
+  StickyImageSection,
+  StickyCodeSection
+} from "@/components/ui/sticky-section";
 import type { MDXComponents } from "mdx/types";
 
 interface PreComponentProps {
@@ -108,6 +120,14 @@ export const mdxComponents: MDXComponents = {
     );
   },
   Image: BlogImage,
+  StickyScrollDemo,
+  BasicStickyExample,
+  MultiStickyDemo,
+  InteractiveStickyDemo,
+  StickyScrollConclusion,
+  StickySection,
+  StickyImageSection,
+  StickyCodeSection,
 };
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
