@@ -7,15 +7,37 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useLanguage } from "@/contexts/language-context";
-import { getLanguageLabel } from "@/lib/i18n";
-import { type Language } from "@/lib/mdx";
+import { getLanguageLabel, type Language } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import { Languages } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 
 export function LanguageSwitcher() {
-  const { language, setLanguage, availableLanguages } = useLanguage();
+  const router = useRouter();
+  const pathname = usePathname();
   const allLanguages: Language[] = ["en", "th"];
+
+  // Extract current language from pathname
+  const currentLanguage = pathname.startsWith("/th") ? "th" : "en";
+
+  const handleLanguageChange = (newLanguage: Language) => {
+    // Build new path with the selected language
+    let newPath: string;
+
+    if (pathname.startsWith("/en")) {
+      // Replace /en with new language
+      newPath = pathname.replace("/en", `/${newLanguage}`);
+    } else if (pathname.startsWith("/th")) {
+      // Replace /th with new language
+      newPath = pathname.replace("/th", `/${newLanguage}`);
+    } else {
+      // Should not happen due to middleware, but fallback
+      newPath = `/${newLanguage}${pathname}`;
+    }
+
+    // Navigate to new language URL - no refresh needed!
+    router.push(newPath);
+  };
 
   return (
     <DropdownMenu>
@@ -26,22 +48,23 @@ export function LanguageSwitcher() {
           className="gap-2 hover:bg-accent hover:text-accent-foreground w-auto sm:w-24 justify-start focus-visible:ring-0 focus-visible:ring-offset-0">
           <Languages className="h-4 w-4 flex-shrink-0" />
           <span className="hidden sm:inline text-sm">
-            {getLanguageLabel(language)}
+            {getLanguageLabel(currentLanguage)}
           </span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="space-y-1">
         {allLanguages.map((lang) => {
-          const isAvailable = !availableLanguages || availableLanguages.includes(lang);
-          const isDisabled = !isAvailable;
+          // All languages are always available - server will handle fallback if content doesn't exist
+          const isAvailable = true;
+          const isDisabled = false;
 
           return (
             <DropdownMenuItem
               key={lang}
-              onClick={() => isAvailable && setLanguage(lang)}
+              onClick={() => isAvailable && handleLanguageChange(lang)}
               disabled={isDisabled}
               className={cn(
-                language === lang ? "bg-accent" : "",
+                currentLanguage === lang ? "bg-accent" : "",
                 isDisabled ? "opacity-50 cursor-not-allowed" : ""
               )}>
               <span className="flex items-center justify-between w-full">

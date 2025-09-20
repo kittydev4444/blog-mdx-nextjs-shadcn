@@ -1,4 +1,6 @@
-import { Language } from "./mdx";
+import { type Language } from "./mdx";
+
+export type { Language };
 
 export const languageNames: Record<Language, string> = {
   en: "English",
