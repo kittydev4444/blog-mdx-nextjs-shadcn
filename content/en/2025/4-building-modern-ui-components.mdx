@@ -9,11 +9,17 @@ published: true
 
 Creating engaging user interfaces requires understanding both design principles and technical implementation. In this guide, we'll walk through building several modern UI components from scratch.
 
-<StickyImageSection
-  src="/images/blog/2025/mdx-blog-setup/hero-image.svg"
-  alt="Modern UI Design Process"
-  caption="The journey from design concept to working component"
->
+<StickyWrapper side="left">
+
+<StickyContent>
+
+![Modern UI Design Process](/images/blog/2025/mdx-blog-setup/hero-image.svg)
+
+*The journey from design concept to working component*
+
+</StickyContent>
+
+<ScrollContent>
 
 ## Understanding Design Systems
 
@@ -47,12 +53,18 @@ Instead of creating complex inheritance hierarchies, we compose smaller componen
 
 Components should be configurable through props, making them flexible without becoming overly complex.
 
-</StickyImageSection>
+</ScrollContent>
 
-<StickyCodeSection
-  title="Card Component Foundation"
-  language="tsx"
-  code={`interface CardProps {
+</StickyWrapper>
+
+<StickyWrapper side="right">
+
+<StickyContent>
+
+### Card Component Foundation
+
+```tsx
+interface CardProps {
   children: React.ReactNode;
   className?: string;
   variant?: 'default' | 'elevated' | 'outlined';
@@ -83,8 +95,12 @@ export function Card({
       {children}
     </div>
   );
-}`}
->
+}
+```
+
+</StickyContent>
+
+<ScrollContent>
 
 ## Building the Card Component
 
@@ -122,14 +138,21 @@ While still allowing customization when needed:
 </Card>
 ```
 
-</StickyCodeSection>
+</ScrollContent>
 
-<StickyImageSection
-  src="/images/blog/2025/mdx-blog-setup/project-structure.svg"
-  alt="Component Organization Structure"
-  caption="How to organize your component library for maximum maintainability"
-  side="right"
->
+</StickyWrapper>
+
+<StickyWrapper side="right">
+
+<StickyContent>
+
+![Component Organization Structure](/images/blog/2025/mdx-blog-setup/project-structure.svg)
+
+*How to organize your component library for maximum maintainability*
+
+</StickyContent>
+
+<ScrollContent>
 
 ## Organizing Your Component Library
 
@@ -168,19 +191,25 @@ Every component should have:
 - Accessibility notes
 - Performance considerations
 
-</StickyImageSection>
+</ScrollContent>
 
-<StickyCodeSection
-  title="Button Component with Variants"
-  language="tsx"
-  code={`type ButtonVariant = 'default' | 'primary' | 'secondary' | 'outline' | 'ghost';
+</StickyWrapper>
+
+<StickyWrapper side="left">
+
+<StickyContent>
+
+### Button Component with Variants
+
+```tsx
+type ButtonVariant = 'default' | 'primary' | 'secondary' | 'outline' | 'ghost';
 type ButtonSize = 'sm' | 'md' | 'lg';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-variant?: ButtonVariant;
-size?: ButtonSize;
-loading?: boolean;
-children: React.ReactNode;
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  loading?: boolean;
+  children: React.ReactNode;
 }
 
 export function Button({
@@ -226,8 +255,12 @@ export function Button({
       )}
     </button>
   );
-}`}
->
+}
+```
+
+</StickyContent>
+
+<ScrollContent>
 
 ## Advanced Button Component
 
@@ -268,14 +301,21 @@ The component handles several important states:
 - Screen reader compatible loading states
 - Disabled state that prevents interaction
 
-</StickyCodeSection>
+</ScrollContent>
 
-<StickyImageSection
-  src="/images/blog/2025/mdx-blog-setup/code-example.svg"
-  alt="Testing Components Workflow"
-  caption="Comprehensive testing strategy for modern UI components"
-  side="left"
->
+</StickyWrapper>
+
+<StickyWrapper side="left">
+
+<StickyContent>
+
+![Testing Components Workflow](/images/blog/2025/mdx-blog-setup/code-example.svg)
+
+*Comprehensive testing strategy for modern UI components*
+
+</StickyContent>
+
+<ScrollContent>
 
 ## Testing Your Components
 
@@ -299,7 +339,9 @@ Modern component development isn't complete without proper testing. Here are the
 - Render performance profiling
 - Memory leak detection
 
-</StickyImageSection>
+</ScrollContent>
+
+</StickyWrapper>
 
 ## Conclusion
 

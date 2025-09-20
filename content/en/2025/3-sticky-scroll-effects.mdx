@@ -49,6 +49,8 @@ Let's create a basic sticky image with scrolling content:
 </div>
 ```
 
+<br />
+
 ```css
 .sticky-container {
   display: flex;
@@ -117,22 +119,22 @@ While CSS handles basic sticky behavior, JavaScript can add sophisticated intera
 ```javascript
 const observerOptions = {
   threshold: [0, 0.5, 1],
-  rootMargin: '-20px 0px'
+  rootMargin: "-20px 0px",
 };
 
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    const stickyElement = entry.target.querySelector('.sticky-element');
+  entries.forEach((entry) => {
+    const stickyElement = entry.target.querySelector(".sticky-element");
 
     if (entry.intersectionRatio > 0.5) {
-      stickyElement.classList.add('active');
+      stickyElement.classList.add("active");
     } else {
-      stickyElement.classList.remove('active');
+      stickyElement.classList.remove("active");
     }
   });
 }, observerOptions);
 
-document.querySelectorAll('.sticky-section').forEach(section => {
+document.querySelectorAll(".sticky-section").forEach((section) => {
   observer.observe(section);
 });
 ```
@@ -188,6 +190,7 @@ Modern `position: sticky` enjoys excellent browser support, but always provide f
 Sticky scroll effects create engaging, modern web experiences when implemented thoughtfully. The key is balancing visual impact with performance and accessibility.
 
 **Key Takeaways:**
+
 - Start with CSS `position: sticky` for basic effects
 - Use JavaScript for complex interactions and state management
 - Always consider mobile experience and performance

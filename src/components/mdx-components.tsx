@@ -10,8 +10,6 @@ import {
 } from "@/components/ui/sticky-scroll-demo";
 import {
   StickySection,
-  StickyImageSection,
-  StickyCodeSection,
   StickyWrapper,
   StickyContent,
   ScrollContent
@@ -129,8 +127,6 @@ export const mdxComponents: MDXComponents = {
   InteractiveStickyDemo,
   StickyScrollConclusion,
   StickySection,
-  StickyImageSection,
-  StickyCodeSection,
   StickyWrapper,
   StickyContent,
   ScrollContent,

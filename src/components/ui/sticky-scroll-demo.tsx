@@ -10,66 +10,66 @@ export function StickyScrollDemo() {
         <p className="text-xs text-muted-foreground mt-1">Scroll to see the sticky effect in action</p>
       </div>
 
-      <div className="flex h-[600px] overflow-y-auto">
-        {/* Sticky Side */}
-        <div className="flex-1 p-6">
-          <div className="sticky top-6 bg-gradient-to-br from-violet-500 to-purple-600 rounded-lg p-8 text-white text-center shadow-lg">
-            <div className="text-6xl mb-4">📌</div>
-            <h3 className="text-xl font-bold mb-2">I&apos;m Sticky!</h3>
-            <p className="text-sm opacity-90">I stay here while you scroll the content on the right.</p>
-            <div className="mt-4 w-16 h-16 mx-auto bg-white/20 rounded-full flex items-center justify-center">
-              <div className="w-8 h-8 bg-white/40 rounded-full animate-pulse"></div>
-            </div>
-          </div>
-        </div>
-
-        {/* Scrolling Content */}
-        <div className="flex-1 p-6 space-y-6">
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
-            <h4 className="font-semibold mb-3">Section 1: Getting Started</h4>
-            <p className="text-sm text-muted-foreground mb-4">
-              As you scroll this content, notice how the purple box on the left stays fixed in place.
-            </p>
-            <div className="space-y-2">
-              {Array.from({ length: 5 }, (_, i) => (
-                <div key={i} className="h-8 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded"></div>
-              ))}
+      <div className="h-[600px] overflow-y-auto">
+        <div className="flex">
+          <div className="flex-1 p-4">
+            <div className="sticky top-6 bg-gradient-to-br from-violet-500 to-purple-600 rounded-lg p-8 text-white text-center shadow-lg">
+              <div className="text-6xl mb-4">📌</div>
+              <h3 className="text-xl font-bold mb-2">I&apos;m Sticky!</h3>
+              <p className="text-sm opacity-90">I stay here while you scroll the content on the right.</p>
+              <div className="mt-4 w-16 h-16 mx-auto bg-white/20 rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 bg-white/40 rounded-full animate-pulse"></div>
+              </div>
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
-            <h4 className="font-semibold mb-3">Section 2: Understanding Sticky</h4>
-            <p className="text-sm text-muted-foreground mb-4">
-              The element uses `position: sticky` with `top: 1.5rem` to maintain distance from the top.
-            </p>
-            <div className="space-y-2">
-              {Array.from({ length: 6 }, (_, i) => (
-                <div key={i} className="h-6 bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-700 dark:to-blue-600 rounded"></div>
-              ))}
+          <div className="flex-1 p-4 space-y-6">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
+              <h4 className="font-semibold mb-3">Section 1: Getting Started</h4>
+              <p className="text-sm text-muted-foreground mb-4">
+                As you scroll this content, notice how the purple box on the left stays fixed in place.
+              </p>
+              <div className="space-y-2">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <div key={i} className="h-8 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded"></div>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
-            <h4 className="font-semibold mb-3">Section 3: Real-World Usage</h4>
-            <p className="text-sm text-muted-foreground mb-4">
-              This pattern is perfect for product showcases, image galleries, and interactive storytelling.
-            </p>
-            <div className="space-y-2">
-              {Array.from({ length: 8 }, (_, i) => (
-                <div key={i} className="h-5 bg-gradient-to-r from-green-100 to-green-200 dark:from-green-700 dark:to-green-600 rounded"></div>
-              ))}
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
+              <h4 className="font-semibold mb-3">Section 2: Understanding Sticky</h4>
+              <p className="text-sm text-muted-foreground mb-4">
+                The element uses `position: sticky` with `top: 1.5rem` to maintain distance from the top.
+              </p>
+              <div className="space-y-2">
+                {Array.from({ length: 6 }, (_, i) => (
+                  <div key={i} className="h-6 bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-700 dark:to-blue-600 rounded"></div>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
-            <h4 className="font-semibold mb-3">Section 4: End of Demo</h4>
-            <p className="text-sm text-muted-foreground mb-4">
-              When you reach the end of the scrollable area, the sticky element would naturally scroll with the container.
-            </p>
-            <div className="space-y-2">
-              {Array.from({ length: 4 }, (_, i) => (
-                <div key={i} className="h-7 bg-gradient-to-r from-orange-100 to-orange-200 dark:from-orange-700 dark:to-orange-600 rounded"></div>
-              ))}
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
+              <h4 className="font-semibold mb-3">Section 3: Real-World Usage</h4>
+              <p className="text-sm text-muted-foreground mb-4">
+                This pattern is perfect for product showcases, image galleries, and interactive storytelling.
+              </p>
+              <div className="space-y-2">
+                {Array.from({ length: 8 }, (_, i) => (
+                  <div key={i} className="h-5 bg-gradient-to-r from-green-100 to-green-200 dark:from-green-700 dark:to-green-600 rounded"></div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
+              <h4 className="font-semibold mb-3">Section 4: End of Demo</h4>
+              <p className="text-sm text-muted-foreground mb-4">
+                When you reach the end of the scrollable area, the sticky element would naturally scroll with the container.
+              </p>
+              <div className="space-y-2">
+                {Array.from({ length: 4 }, (_, i) => (
+                  <div key={i} className="h-7 bg-gradient-to-r from-orange-100 to-orange-200 dark:from-orange-700 dark:to-orange-600 rounded"></div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -93,28 +93,28 @@ export function BasicStickyExample() {
           </div>
         </div>
 
-        <div className="flex-1 p-4 space-y-4">
-          <div className="bg-card p-4 rounded border">
-            <h5 className="font-medium mb-2">Content Block 1</h5>
-            <p className="text-sm text-muted-foreground">This content scrolls while the image stays put.</p>
+          <div className="flex-1 p-4 space-y-4">
+            <div className="bg-card p-4 rounded border">
+              <h5 className="font-medium mb-2">Content Block 1</h5>
+              <p className="text-sm text-muted-foreground">This content scrolls while the image stays put.</p>
+            </div>
+            <div className="bg-card p-4 rounded border">
+              <h5 className="font-medium mb-2">Content Block 2</h5>
+              <p className="text-sm text-muted-foreground">Notice how the blue box remains fixed as you scroll.</p>
+            </div>
+            <div className="bg-card p-4 rounded border">
+              <h5 className="font-medium mb-2">Content Block 3</h5>
+              <p className="text-sm text-muted-foreground">This demonstrates the core sticky scroll concept.</p>
+            </div>
+            <div className="bg-card p-4 rounded border">
+              <h5 className="font-medium mb-2">Content Block 4</h5>
+              <p className="text-sm text-muted-foreground">Keep scrolling to see more content areas...</p>
+            </div>
+            <div className="bg-card p-4 rounded border">
+              <h5 className="font-medium mb-2">Final Block</h5>
+              <p className="text-sm text-muted-foreground">At the end, everything scrolls together normally.</p>
+            </div>
           </div>
-          <div className="bg-card p-4 rounded border">
-            <h5 className="font-medium mb-2">Content Block 2</h5>
-            <p className="text-sm text-muted-foreground">Notice how the blue box remains fixed as you scroll.</p>
-          </div>
-          <div className="bg-card p-4 rounded border">
-            <h5 className="font-medium mb-2">Content Block 3</h5>
-            <p className="text-sm text-muted-foreground">This demonstrates the core sticky scroll concept.</p>
-          </div>
-          <div className="bg-card p-4 rounded border">
-            <h5 className="font-medium mb-2">Content Block 4</h5>
-            <p className="text-sm text-muted-foreground">Keep scrolling to see more content areas...</p>
-          </div>
-          <div className="bg-card p-4 rounded border">
-            <h5 className="font-medium mb-2">Final Block</h5>
-            <p className="text-sm text-muted-foreground">At the end, everything scrolls together normally.</p>
-          </div>
-        </div>
       </div>
     </div>
   );
@@ -151,7 +151,7 @@ export function MultiStickyDemo() {
             </div>
 
             <div className="flex-1 p-6 space-y-4">
-              <div className="bg-card p-4 rounded border">
+                  <div className="bg-card p-4 rounded border">
                 <h5 className="font-medium mb-2">{section.title} Details</h5>
                 <p className="text-sm text-muted-foreground mb-4">
                   This section explains the {section.title.toLowerCase()} process in detail.
