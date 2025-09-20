@@ -1,0 +1,71 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F8FAFC;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E2E8F0;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#bgGradient)" rx="12" stroke="#CBD5E1" stroke-width="2"/>
+
+  <!-- Header -->
+  <rect x="16" y="16" width="368" height="40" fill="#1E293B" rx="6"/>
+  <text x="32" y="40" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Dashboard Analytics</text>
+
+  <!-- Stats Grid -->
+  <g transform="translate(16, 72)">
+    <!-- Stat 1 -->
+    <rect x="0" y="0" width="80" height="60" fill="#3B82F6" rx="4"/>
+    <text x="40" y="25" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="20" font-weight="bold">1.2K</text>
+    <text x="40" y="40" text-anchor="middle" fill="#DBEAFE" font-family="Arial, sans-serif" font-size="10">Users</text>
+
+    <!-- Stat 2 -->
+    <rect x="96" y="0" width="80" height="60" fill="#10B981" rx="4"/>
+    <text x="136" y="25" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="20" font-weight="bold">89%</text>
+    <text x="136" y="40" text-anchor="middle" fill="#D1FAE5" font-family="Arial, sans-serif" font-size="10">Growth</text>
+
+    <!-- Stat 3 -->
+    <rect x="192" y="0" width="80" height="60" fill="#F59E0B" rx="4"/>
+    <text x="232" y="25" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="20" font-weight="bold">$45K</text>
+    <text x="232" y="40" text-anchor="middle" fill="#FEF3C7" font-family="Arial, sans-serif" font-size="10">Revenue</text>
+
+    <!-- Stat 4 -->
+    <rect x="288" y="0" width="80" height="60" fill="#8B5CF6" rx="4"/>
+    <text x="328" y="25" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="20" font-weight="bold">24</text>
+    <text x="328" y="40" text-anchor="middle" fill="#EDE9FE" font-family="Arial, sans-serif" font-size="10">Projects</text>
+  </g>
+
+  <!-- Chart Area -->
+  <g transform="translate(16, 148)">
+    <rect x="0" y="0" width="368" height="120" fill="white" rx="6" stroke="#E2E8F0"/>
+
+    <!-- Chart Title -->
+    <text x="16" y="20" fill="#1E293B" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Performance Metrics</text>
+
+    <!-- Fake Chart Lines -->
+    <polyline points="32,90 80,70 128,45 176,35 224,50 272,25 320,40"
+              stroke="#3B82F6" stroke-width="2" fill="none"/>
+    <polyline points="32,100 80,85 128,75 176,65 224,70 272,55 320,60"
+              stroke="#10B981" stroke-width="2" fill="none"/>
+
+    <!-- Chart Dots -->
+    <circle cx="32" cy="90" r="3" fill="#3B82F6"/>
+    <circle cx="80" cy="70" r="3" fill="#3B82F6"/>
+    <circle cx="128" cy="45" r="3" fill="#3B82F6"/>
+    <circle cx="176" cy="35" r="3" fill="#3B82F6"/>
+    <circle cx="224" cy="50" r="3" fill="#3B82F6"/>
+    <circle cx="272" cy="25" r="3" fill="#3B82F6"/>
+    <circle cx="320" cy="40" r="3" fill="#3B82F6"/>
+
+    <!-- Legend -->
+    <circle cx="280" cy="105" r="4" fill="#3B82F6"/>
+    <text x="290" y="109" fill="#64748B" font-family="Arial, sans-serif" font-size="10">Active</text>
+    <circle cx="320" cy="105" r="4" fill="#10B981"/>
+    <text x="330" y="109" fill="#64748B" font-family="Arial, sans-serif" font-size="10">Total</text>
+
+    <!-- Interactive Elements -->
+    <rect x="280" y="32" width="88" height="20" fill="#EF4444" rx="10" opacity="0.1"/>
+    <text x="324" y="45" text-anchor="middle" fill="#EF4444" font-family="Arial, sans-serif" font-size="9" font-weight="bold">LIVE DATA</text>
+  </g>
+</svg>

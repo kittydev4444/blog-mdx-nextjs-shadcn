@@ -1,0 +1,414 @@
+---
+title: "Mastering Flexible Sticky Layouts: The Ultimate StickyWrapper Guide"
+date: "2025-01-22"
+excerpt: "Discover how to create dynamic sticky scroll effects with complete control over positioning. Learn to build flexible layouts where any content can stick to either side while other content flows naturally."
+published: true
+---
+
+# Mastering Flexible Sticky Layouts
+
+The web has evolved beyond static layouts. Today's users expect dynamic, engaging experiences where content adapts to their scrolling behavior. Enter the `StickyWrapper` - a powerful component that gives you complete control over sticky positioning without the complexity of manual CSS positioning.
+
+<StickyWrapper side="left">
+
+<StickyContent>
+
+![Layout System Overview](/images/blog/2025/flexible-sticky-layouts/layout-diagram.svg)
+
+</StickyContent>
+
+<ScrollContent>
+
+## What Makes Sticky Layouts Special?
+
+Unlike traditional fixed positioning, sticky layouts create a natural reading flow where important content stays visible while supplementary information scrolls past. This pattern is perfect for:
+
+- **Documentation sites** where code examples stay visible alongside explanations
+- **Product showcases** where images remain in focus during feature descriptions
+- **Tutorial content** where visual aids complement step-by-step instructions
+- **Dashboard layouts** where key metrics stay accessible during data exploration
+
+The magic happens when sticky positioning feels natural and enhances rather than disrupts the user experience.
+
+## The Problem with Traditional Approaches
+
+Before `StickyWrapper`, creating sticky layouts required:
+
+1. **Manual CSS positioning** with complex media queries
+2. **Hardcoded HTML structures** that couldn't adapt to different content
+3. **JavaScript scroll listeners** that impacted performance
+4. **Separate components** for each sticky scenario
+
+This led to maintenance nightmares and limited flexibility. What if you wanted to switch which side content sticks to? What if you had mixed content types? The traditional approach fell apart quickly.
+
+</ScrollContent>
+
+</StickyWrapper>
+
+<StickyWrapper side="right">
+
+<StickyContent>
+
+```tsx
+interface StickyWrapperProps {
+  children: ReactNode;
+  side?: "left" | "right";
+  className?: string;
+  stickyClassName?: string;
+  contentClassName?: string;
+  stickyOffset?: string;
+}
+
+export function StickyWrapper({
+  children,
+  side = "left",
+  stickyOffset = "top-8",
+}: StickyWrapperProps) {
+  const childrenArray = Array.isArray(children)
+    ? children : [children];
+
+  // Find sticky content marked with StickyContent component
+  let stickyContent: ReactNode = null;
+  let scrollingContent: ReactNode[] = [];
+
+  childrenArray.forEach((child) => {
+    if (
+      child &&
+      typeof child === "object" &&
+      "type" in child &&
+      child.type === StickyContent
+    ) {
+      stickyContent = child;
+    } else {
+      scrollingContent.push(child);
+    }
+  });
+
+  // Auto-detect: first child as sticky if multiple
+  if (!stickyContent && childrenArray.length > 1) {
+    stickyContent = childrenArray[0];
+    scrollingContent = childrenArray.slice(1);
+  }
+
+  return (
+    <div className="flex flex-col lg:flex-row gap-8">
+      {side === "left" ? (
+        <>
+          <div className="flex-1">
+            <div className={`lg:sticky lg:${stickyOffset}`}>
+              {stickyContent}
+            </div>
+          </div>
+          <div className="flex-1">
+            {scrollingContent}
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="flex-1">
+            {scrollingContent}
+          </div>
+          <div className="flex-1">
+            <div className={`lg:sticky lg:${stickyOffset}`}>
+              {stickyContent}
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+```
+
+</StickyContent>
+
+<ScrollContent>
+
+## The StickyWrapper Solution
+
+The `StickyWrapper` component solves these problems with an elegant, flexible API. Here's what makes it special:
+
+### Automatic Content Detection
+
+The component automatically identifies what should stick by looking for the `StickyContent` component:
+
+```jsx
+<StickyWrapper>
+  <StickyContent>This content will stick</StickyContent>
+  <ScrollContent>
+    <div>This content will scroll</div>
+    <div>More scrolling content</div>
+  </ScrollContent>
+</StickyWrapper>
+```
+
+### Flexible Side Control
+
+Switch between left and right positioning with a simple prop:
+
+```jsx
+// Sticky content on the left
+<StickyWrapper side="left">
+  <StickyContent>Stays left</StickyContent>
+  <ScrollContent>Scrolls right</ScrollContent>
+</StickyWrapper>
+
+// Sticky content on the right
+<StickyWrapper side="right">
+  <StickyContent>Stays right</StickyContent>
+  <ScrollContent>Scrolls left</ScrollContent>
+</StickyWrapper>
+```
+
+### Smart Fallbacks
+
+If no `StickyContent` component is found, the component intelligently uses the first child as sticky content when multiple children are present.
+
+### Responsive Design
+
+The sticky behavior automatically adapts to screen size - sticky on large screens, stacked on mobile devices.
+
+</ScrollContent>
+
+</StickyWrapper>
+
+<StickyWrapper side="left">
+
+<StickyContent>
+
+![Dashboard Mockup](/images/blog/2025/flexible-sticky-layouts/dashboard-mockup.svg)
+
+*Interactive dashboard components work perfectly with sticky layouts*
+
+</StickyContent>
+
+<ScrollContent>
+
+## Real-World Use Cases
+
+Let's explore practical applications where `StickyWrapper` excels:
+
+### 1. Code Documentation
+
+Perfect for tutorials where code examples need to stay visible:
+
+```jsx
+<StickyWrapper side="left">
+  <StickyContent>
+    <pre>
+      <code>{codeExample}</code>
+    </pre>
+  </StickyContent>
+  <ScrollContent>
+    <h3>Step 1: Initialize</h3>
+    <p>First, we set up the basic structure...</p>
+
+    <h3>Step 2: Configure</h3>
+    <p>Next, we add the configuration options...</p>
+
+    <h3>Step 3: Execute</h3>
+    <p>Finally, we run the implementation...</p>
+  </ScrollContent>
+</StickyWrapper>
+```
+
+### 2. Product Showcases
+
+Keep product images visible while users read features:
+
+```jsx
+<StickyWrapper side="right">
+  <StickyContent>
+    <img src="/product-hero.jpg" alt="Product showcase" />
+  </StickyContent>
+  <ScrollContent>
+    <h2>Key Features</h2>
+    <ul>
+      <li>Advanced analytics dashboard</li>
+      <li>Real-time data synchronization</li>
+      <li>Customizable reporting tools</li>
+      <li>Enterprise-grade security</li>
+    </ul>
+  </ScrollContent>
+</StickyWrapper>
+```
+
+### 3. Interactive Dashboards
+
+Create engaging data visualizations where charts stick while details scroll:
+
+- **Performance Metrics**: Keep key charts visible during analysis
+- **User Analytics**: Display trends while exploring detailed breakdowns
+- **Financial Data**: Show summary widgets alongside transaction details
+- **Project Management**: Pin progress indicators while reviewing task lists
+
+</ScrollContent>
+
+</StickyWrapper>
+
+<StickyWrapper side="right">
+
+<StickyContent>
+
+```css
+/* Automatic responsive behavior */
+.sticky-section-full-width {
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  max-width: 100vw;
+}
+
+@media (min-width: 1024px) {
+  .sticky-section-full-width {
+    min-height: 100vh;
+  }
+}
+
+/* Mobile-first stacking */
+@media (max-width: 1023px) {
+  .sticky-wrapper {
+    flex-direction: column;
+  }
+
+  .sticky-content {
+    position: static !important;
+  }
+}
+```
+
+</StickyContent>
+
+<ScrollContent>
+
+## Advanced Styling and Customization
+
+The `StickyWrapper` provides multiple styling hooks for complete customization:
+
+### CSS Classes
+
+- `className`: Controls the main wrapper styling
+- `stickyClassName`: Targets the sticky content container
+- `contentClassName`: Styles the scrolling content area
+
+### Sticky Positioning
+
+The `stickyOffset` prop controls how far from the top the sticky content sits:
+
+```jsx
+<StickyWrapper stickyOffset="top-16">
+  {/* Content sticks 4rem from top */}
+</StickyWrapper>
+
+<StickyWrapper stickyOffset="top-32">
+  {/* Content sticks 8rem from top */}
+</StickyWrapper>
+```
+
+### Full-Width Layouts
+
+The component automatically handles full-width layouts that break out of content containers, perfect for immersive experiences.
+
+### Mobile Considerations
+
+On mobile devices, the sticky behavior is disabled and content stacks vertically for optimal reading experience.
+
+</ScrollContent>
+
+</StickyWrapper>
+
+## Performance and Accessibility
+
+The `StickyWrapper` is built with performance and accessibility in mind:
+
+### Performance Features
+
+- **Pure CSS sticky positioning** - no JavaScript scroll listeners
+- **Minimal DOM manipulation** - content detection happens once during render
+- **Responsive classes** - automatic mobile optimization without media queries
+- **Efficient re-renders** - smart prop handling prevents unnecessary updates
+
+### Accessibility Benefits
+
+- **Semantic HTML structure** maintained regardless of visual positioning
+- **Keyboard navigation** works naturally with stacked content flow
+- **Screen reader compatibility** - content order remains logical
+- **Focus management** - no focus traps or unexpected jumps
+
+### SEO Advantages
+
+- **Natural document flow** - search engines read content in logical order
+- **Mobile-first approach** - responsive design improves mobile rankings
+- **Fast loading** - minimal CSS and no JavaScript dependencies
+- **Content accessibility** - all content remains accessible regardless of positioning
+
+## Integration with MDX
+
+The `StickyWrapper` works seamlessly in MDX files:
+
+```mdx
+<StickyWrapper side="left">
+
+<StickyContent>
+
+![Your Image](/path/to/image.jpg)
+
+</StickyContent>
+
+<ScrollContent>
+
+## Your Content
+
+This content will scroll past the sticky image.
+
+### More Content
+
+Additional sections continue scrolling.
+
+</ScrollContent>
+
+</StickyWrapper>
+```
+
+The key is using the `StickyContent` component to mark which content should remain fixed and `ScrollContent` to wrap content that flows naturally.
+
+## Best Practices
+
+### 1. Content Balance
+
+Ensure sticky and scrolling content have appropriate proportions:
+
+- **50/50 split** works well for most layouts
+- **33/67 split** when sticky content is supplementary
+- **67/33 split** when sticky content is primary focus
+
+### 2. Mobile Experience
+
+Always test on mobile devices where sticky behavior is disabled:
+
+- Ensure content order makes sense when stacked
+- Verify images and code blocks remain readable
+- Check that calls-to-action are appropriately positioned
+
+### 3. Performance Considerations
+
+- Use appropriately sized images in sticky content
+- Avoid complex animations in sticky sections
+- Test scroll performance on lower-end devices
+- Monitor layout shift during initial render
+
+### 4. Accessibility Guidelines
+
+- Maintain logical heading hierarchy
+- Ensure sufficient color contrast in all sections
+- Provide alternative text for sticky images
+- Test keyboard navigation thoroughly
+
+## Conclusion
+
+The `StickyWrapper` component represents a new paradigm in layout design - one where flexibility meets simplicity. By providing automatic content detection, flexible positioning, and responsive behavior, it solves the common pain points of sticky layouts while opening up new creative possibilities.
+
+Whether you're building documentation, showcasing products, or creating immersive experiences, the `StickyWrapper` gives you the tools to create engaging layouts that enhance rather than distract from your content.
+
+The future of web layout is flexible, responsive, and user-focused. With `StickyWrapper`, that future is available today.
+
+*Ready to implement sticky layouts in your project? Start with the basic examples above and experiment with different content types and positioning options. The component's flexibility means you can adapt it to virtually any design requirement while maintaining clean, maintainable code.*

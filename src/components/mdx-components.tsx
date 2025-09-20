@@ -11,7 +11,10 @@ import {
 import {
   StickySection,
   StickyImageSection,
-  StickyCodeSection
+  StickyCodeSection,
+  StickyWrapper,
+  StickyContent,
+  ScrollContent
 } from "@/components/ui/sticky-section";
 import type { MDXComponents } from "mdx/types";
 
@@ -128,6 +131,9 @@ export const mdxComponents: MDXComponents = {
   StickySection,
   StickyImageSection,
   StickyCodeSection,
+  StickyWrapper,
+  StickyContent,
+  ScrollContent,
 };
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
