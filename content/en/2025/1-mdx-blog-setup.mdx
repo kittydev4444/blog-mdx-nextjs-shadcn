@@ -7,6 +7,62 @@ published: true
 
 MDX combines the power of Markdown with the flexibility of React components, making it perfect for technical blogs and documentation sites.
 
+<Image
+  src="/images/blog/2025/mdx-blog-setup/hero-image.svg"
+  alt="MDX Blog Setup Hero Image"
+  width={800}
+  height={400}
+  caption="Modern blog setup with MDX, Next.js, and TypeScript"
+/>
+
+## Adding Images to Your Blog
+
+Our blog now supports images with automatic optimization and responsive design. You can add images in several ways:
+
+### Standard Markdown Images
+
+```markdown
+![Alt text](/images/blog/2025/mdx-blog-setup/hero-image.jpg "Optional caption")
+```
+
+![Project structure example](/images/blog/2025/mdx-blog-setup/project-structure.svg "Clean project organization")
+
+### Custom Image Component
+
+For more control, use the custom Image component:
+
+```jsx
+<Image
+  src="/images/blog/2025/mdx-blog-setup/code-example.jpg"
+  alt="Code example screenshot"
+  width={700}
+  height={400}
+  caption="Example of MDX code structure"
+/>
+```
+
+<Image
+  src="/images/blog/2025/mdx-blog-setup/code-example.svg"
+  alt="MDX code structure example"
+  width={600}
+  height={350}
+  caption="Example MDX file showing frontmatter and content structure"
+/>
+
+### Image Organization
+
+Images are organized by year and blog post name:
+
+```tree
+public/images/blog/
+├── 2024/
+│   ├── getting-started-with-nextjs/
+│   └── building-with-shadcn-ui/
+└── 2025/
+    ├── mdx-blog-setup/
+    └── solana-fundamentals/
+```
+
 ## Project Structure
 
 Our blog follows a clean, organized structure:

@@ -1,5 +1,6 @@
 import { CodeBlock } from "@/components/ui/code-block";
 import { FileTree } from "@/components/ui/file-tree";
+import { BlogImage } from "@/components/ui/blog-image";
 import type { MDXComponents } from "mdx/types";
 
 interface PreComponentProps {
@@ -10,6 +11,15 @@ interface PreComponentProps {
 interface CodeComponentProps {
   children: React.ReactNode;
   className?: string;
+  [key: string]: unknown;
+}
+
+interface ImgComponentProps {
+  src?: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+  title?: string;
   [key: string]: unknown;
 }
 
@@ -81,6 +91,23 @@ export const mdxComponents: MDXComponents = {
       </code>
     );
   },
+  img: ({ src, alt, width, height, title, ...props }: ImgComponentProps) => {
+    if (!src || !alt) {
+      return null;
+    }
+
+    return (
+      <BlogImage
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        caption={title}
+        {...props}
+      />
+    );
+  },
+  Image: BlogImage,
 };
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {

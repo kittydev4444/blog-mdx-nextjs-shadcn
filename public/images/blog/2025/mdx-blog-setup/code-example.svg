@@ -1,0 +1,50 @@
+<svg width="600" height="350" viewBox="0 0 600 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="600" height="350" fill="#0D1117" rx="8"/>
+
+  <!-- Terminal header -->
+  <rect width="600" height="40" fill="#21262D" rx="8 8 0 0"/>
+  <circle cx="20" cy="20" r="6" fill="#FF5F56"/>
+  <circle cx="40" cy="20" r="6" fill="#FFBD2E"/>
+  <circle cx="60" cy="20" r="6" fill="#27CA3F"/>
+
+  <text x="90" y="25" fill="#8B949E" font-family="monospace" font-size="12">mdx-blog-setup.mdx</text>
+
+  <!-- Code content -->
+  <g transform="translate(20, 60)" font-family="monospace" font-size="12">
+    <!-- YAML frontmatter -->
+    <text x="0" y="20" fill="#7C3AED">---</text>
+    <text x="0" y="40" fill="#F97316">title:</text>
+    <text x="50" y="40" fill="#22C55E">"Setting Up a Blog with MDX"</text>
+    <text x="0" y="60" fill="#F97316">date:</text>
+    <text x="50" y="60" fill="#22C55E">"2025-01-15"</text>
+    <text x="0" y="80" fill="#F97316">published:</text>
+    <text x="80" y="80" fill="#3B82F6">true</text>
+    <text x="0" y="100" fill="#7C3AED">---</text>
+
+    <!-- Markdown content -->
+    <text x="0" y="140" fill="#8B949E"># Setting Up Your Blog</text>
+
+    <text x="0" y="170" fill="#E6EDF3">MDX combines the power of</text>
+    <text x="180" y="170" fill="#F97316">**Markdown**</text>
+    <text x="270" y="170" fill="#E6EDF3">with</text>
+    <text x="300" y="170" fill="#22C55E">React</text>
+
+    <!-- Image example -->
+    <text x="0" y="200" fill="#8B949E">## Adding Images</text>
+
+    <text x="0" y="230" fill="#7C3AED">![</text>
+    <text x="20" y="230" fill="#22C55E">Hero Image</text>
+    <text x="100" y="230" fill="#7C3AED">](</text>
+    <text x="115" y="230" fill="#06B6D4">/images/blog/hero.svg</text>
+    <text x="290" y="230" fill="#7C3AED">)</text>
+
+    <!-- Custom component example -->
+    <text x="0" y="260" fill="#7C3AED">&lt;Image</text>
+    <text x="0" y="280" fill="#F97316">  src=</text>
+    <text x="40" y="280" fill="#22C55E">"/images/example.svg"</text>
+    <text x="0" y="300" fill="#F97316">  alt=</text>
+    <text x="40" y="300" fill="#22C55E">"Example"</text>
+    <text x="130" y="300" fill="#7C3AED">/&gt;</text>
+  </g>
+</svg>

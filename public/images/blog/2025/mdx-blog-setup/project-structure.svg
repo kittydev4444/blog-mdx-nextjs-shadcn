@@ -1,0 +1,49 @@
+<svg width="700" height="400" viewBox="0 0 700 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0F172A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E293B;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="700" height="400" fill="url(#bgGradient)" rx="12"/>
+
+  <!-- File structure -->
+  <g transform="translate(50, 50)" font-family="monospace" font-size="14" fill="#E2E8F0">
+    <!-- Folder icons and structure -->
+    <g>
+      <!-- Root -->
+      <text x="0" y="20" fill="#10B981">📁 content/</text>
+
+      <!-- 2024 folder -->
+      <text x="20" y="45" fill="#F59E0B">📁 2024/</text>
+      <text x="40" y="70" fill="#06B6D4">📄 1-getting-started-with-nextjs.mdx</text>
+      <text x="40" y="95" fill="#06B6D4">📄 2-building-with-shadcn-ui.mdx</text>
+
+      <!-- 2025 folder -->
+      <text x="20" y="130" fill="#F59E0B">📁 2025/</text>
+      <text x="40" y="155" fill="#06B6D4">📄 1-mdx-blog-setup.mdx</text>
+      <text x="40" y="180" fill="#06B6D4">📄 2-solana-fundamentals.mdx</text>
+
+      <!-- Images folder -->
+      <text x="0" y="220" fill="#10B981">📁 public/images/blog/</text>
+      <text x="20" y="245" fill="#F59E0B">📁 2025/</text>
+      <text x="40" y="270" fill="#F59E0B">📁 mdx-blog-setup/</text>
+      <text x="60" y="295" fill="#8B5CF6">🖼️ hero-image.svg</text>
+      <text x="60" y="320" fill="#8B5CF6">🖼️ project-structure.svg</text>
+    </g>
+
+    <!-- Title -->
+    <text x="350" y="30" fill="#F1F5F9" font-size="20" font-weight="bold">Project Structure</text>
+    <text x="350" y="55" fill="#94A3B8" font-size="12">Organized content and assets</text>
+
+    <!-- Features -->
+    <g transform="translate(350, 80)">
+      <text x="0" y="25" fill="#10B981" font-size="12">✓ Year-based organization</text>
+      <text x="0" y="50" fill="#10B981" font-size="12">✓ Automatic discovery</text>
+      <text x="0" y="75" fill="#10B981" font-size="12">✓ Image optimization</text>
+      <text x="0" y="100" fill="#10B981" font-size="12">✓ TypeScript support</text>
+    </g>
+  </g>
+</svg>
