@@ -47,7 +47,7 @@ export default async function BlogPost({ params }: PageProps) {
         />
       </header>
 
-      <div className="prose prose-zinc dark:prose-invert max-w-4xl min-w-full mx-auto [&_.sticky-section-full-width]:max-w-none [&_.sticky-section-full-width]:mx-0">
+      <div className="prose prose-zinc dark:prose-invert max-w-4xl min-w-6xl mx-auto [&_.sticky-section-full-width]:max-w-none [&_.sticky-section-full-width]:mx-0">
         <MDXRemote
           source={post.content}
           components={mdxComponents}
