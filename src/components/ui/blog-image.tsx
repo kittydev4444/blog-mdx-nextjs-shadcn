@@ -20,10 +20,13 @@ export function BlogImage({
   caption,
   priority = false,
 }: BlogImageProps) {
+  // Use consistent aspect ratio (2:1) for all images based on default 800x400
+  const consistentAspectRatio = "2 / 1";
+
   if (caption) {
     return (
       <span className="block my-4 md:my-8 space-y-2 w-full min-w-[280px] md:min-w-[500px] overflow-hidden">
-        <span className="relative block w-full" style={{ aspectRatio: `${width} / ${height}` }}>
+        <span className="relative block w-full" style={{ aspectRatio: consistentAspectRatio }}>
           <Image
             src={src}
             alt={alt}
@@ -44,7 +47,7 @@ export function BlogImage({
   }
 
   return (
-    <span className="relative block my-4 md:my-8 w-full min-w-[280px] md:min-w-[500px] overflow-hidden rounded-lg border" style={{ aspectRatio: `${width} / ${height}` }}>
+    <span className="relative block my-4 md:my-8 w-full min-w-[280px] md:min-w-[500px] overflow-hidden rounded-lg border" style={{ aspectRatio: consistentAspectRatio }}>
       <Image
         src={src}
         alt={alt}
