@@ -54,7 +54,7 @@ export function CodeBlock({
             variant="ghost"
             size="sm"
             onClick={handleCopy}
-            className="h-6 w-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity">
+            className="h-6 w-6 p-0 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
             {copied ? (
               <Check className="h-3 w-3 text-[#79c07b]" />
             ) : (
@@ -75,7 +75,7 @@ export function CodeBlock({
             variant="ghost"
             size="sm"
             onClick={handleCopy}
-            className="absolute top-2 right-2 h-6 w-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity">
+            className="absolute top-2 right-2 h-6 w-6 p-0 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
             {copied ? (
               <Check className="h-3 w-3 text-[#79c07b]" />
             ) : (
