@@ -1,3 +1,4 @@
+import { BuyMeCoffee } from "@/components/buy-me-coffee";
 import { Header } from "@/components/header";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -29,6 +30,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Header />
         <main>{children}</main>
+        <BuyMeCoffee />
       </body>
     </html>
   );
