@@ -36,54 +36,32 @@ export default async function Home({ params }: HomeProps) {
             className="group relative overflow-hidden border-0 glass hover:shadow-solana transition-all duration-300 hover:-translate-y-1">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-            <CardHeader className="relative space-y-4 pb-4">
-              <div className="flex flex-col gap-3">
-                <div className="flex items-start justify-between gap-4">
-                  <CardTitle className="text-2xl md:text-3xl font-bold leading-tight group-hover:text-primary transition-colors duration-200">
-                    <Link href={`/${lang}/blog/${post.slug}`} className="block">
+            <Link href={`/${lang}/blog/${post.slug}`} className="block">
+              <CardHeader className="relative space-y-4 pb-4">
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-start justify-between gap-4">
+                    <CardTitle className="text-xl md:text-2xl lg:text-3xl font-bold leading-tight group-hover:text-primary transition-colors duration-200">
                       {post.title}
-                    </Link>
-                  </CardTitle>
-                  <PostDate date={post.date} variant="badge" />
+                    </CardTitle>
+                  </div>
+
+                  {post.excerpt && (
+                    <CardDescription className="text-sm md:text-base leading-relaxed text-muted-foreground/90">
+                      {post.excerpt}
+                    </CardDescription>
+                  )}
                 </div>
+              </CardHeader>
 
-                {post.excerpt && (
-                  <CardDescription className="text-base leading-relaxed text-muted-foreground/90">
-                    {post.excerpt}
-                  </CardDescription>
-                )}
-              </div>
-            </CardHeader>
-
-            <CardContent className="relative pt-0">
-              <div className="flex items-center justify-between">
-                <Link
-                  href={`/${lang}/blog/${post.slug}`}
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all duration-200 group/link">
-                  <span>Read article</span>
-                  <svg
-                    className="h-4 w-4 transition-transform duration-200 group-hover/link:translate-x-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </Link>
-
+              <CardContent className="relative pt-0">
                 <PostMeta
                   date={post.date}
                   readingTime={post.readingTime}
-                  year={post.year}
                   variant="compact"
                   availableLanguages={getPostAvailableLanguages(post.slug)}
                 />
-              </div>
-            </CardContent>
+              </CardContent>
+            </Link>
           </Card>
         ))}
       </div>

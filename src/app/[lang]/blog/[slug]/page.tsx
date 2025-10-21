@@ -37,8 +37,8 @@ export default async function BlogPost({ params }: PageProps) {
 
   return (
     <article className="max-w-7xl mx-auto px-4 py-8">
-      <header className="mb-12 flex flex-col items-center">
-        <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
+      <header className="mb-8 md:mb-12 flex flex-col items-center">
+        <h1 className="text-2xl md:text-4xl font-bold mb-4 text-center px-2">{post.title}</h1>
         <PostMeta
           date={post.date}
           readingTime={post.readingTime}
@@ -47,7 +47,7 @@ export default async function BlogPost({ params }: PageProps) {
         />
       </header>
 
-      <div className="prose prose-zinc dark:prose-invert max-w-4xl min-w-6xl mx-auto [&_.sticky-section-full-width]:max-w-none [&_.sticky-section-full-width]:mx-0">
+      <div className="prose prose-sm md:prose-base prose-zinc dark:prose-invert max-w-4xl min-w-6xl mx-auto [&_.sticky-section-full-width]:max-w-none [&_.sticky-section-full-width]:mx-0 prose-img:max-w-full prose-img:h-auto">
         <MDXRemote
           source={post.content}
           components={mdxComponents}
