@@ -63,18 +63,19 @@ src/
 ├── components/
 │   ├── ui/             # shadcn/ui components
 │   └── mdx-components.tsx  # Custom MDX components
+├── hooks/              # Custom React hooks
 └── lib/
     ├── utils.ts        # Utility functions (cn, etc.)
     └── mdx.ts          # MDX processing utilities
 
 content/                # Blog posts in MDX format
-└── [year]/
-    └── *.mdx
+├── en/                 # English blog posts
+└── th/                 # Thai blog posts
 ```
 
 ## Writing Blog Posts
 
-Create MDX files in the `content/` directory. The blog supports:
+Create MDX files in the `content/[lang]/` directory (e.g., `content/en/` for English, `content/th/` for Thai). The blog supports:
 
 - **Code blocks** with syntax highlighting
 - **File trees** for directory structures
