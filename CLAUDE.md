@@ -69,15 +69,30 @@ git add .
 git commit -m "feat: your commit message"
 git push -u origin feature/your-feature-name
 
-# Then rebase to dev and push
-git checkout dev
-git rebase feature/your-feature-name
-git push origin dev
-
-# Clean up feature branch
-git branch -d feature/your-feature-name
-git push origin --delete feature/your-feature-name
+# STOP HERE - Wait for user instruction
+# The user will tell you when to:
+# - Rebase feature branch to dev
+# - Rebase dev to main
+# - Delete feature branches
+# NEVER do these operations automatically!
 ```
+
+## Git Branch Management Rules
+
+**NEVER do these operations without explicit user instruction:**
+
+❌ **DO NOT** rebase feature branches to `dev` automatically
+❌ **DO NOT** rebase `dev` to `main` automatically  
+❌ **DO NOT** delete feature branches automatically (local or remote)
+❌ **DO NOT** push to `main` or `dev` without being asked
+
+✅ **ONLY** create feature branches and push them when working on features
+✅ **WAIT** for user to explicitly ask before rebasing or deleting branches
+
+The user will tell you when they want to:
+- Merge/rebase feature branch to dev
+- Merge/rebase dev to main  
+- Clean up feature branches
 
 ## Git Commit Guidelines
 
@@ -104,6 +119,8 @@ feat: implement user authentication system
 
 - ALWAYS create a new branch before making any code changes or new features
 - NEVER include Claude/AI attribution in commit messages
+- NEVER rebase branches or delete branches without explicit user instruction
+- NEVER push to main or dev without being asked
 - Do what has been asked; nothing more, nothing less
 - NEVER create files unless they're absolutely necessary for achieving your goal
 - ALWAYS prefer editing an existing file to creating a new one
