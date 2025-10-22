@@ -10,6 +10,10 @@ import { MDXRemote } from "next-mdx-remote-client/rsc";
 import { notFound } from "next/navigation";
 import rehypeHighlight from "rehype-highlight";
 
+// Force dynamic rendering in development for hot reload
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 interface PageProps {
   params: Promise<{ lang: Language; slug: string }>;
 }
@@ -38,7 +42,9 @@ export default async function BlogPost({ params }: PageProps) {
   return (
     <article className="max-w-7xl mx-auto px-4 py-8">
       <header className="mb-8 md:mb-12 flex flex-col items-center">
-        <h1 className="text-2xl md:text-4xl font-bold mb-4 text-center px-2">{post.title}</h1>
+        <h1 className="text-2xl md:text-4xl font-bold mb-4 text-center px-2">
+          {post.title}
+        </h1>
         <PostMeta
           date={post.date}
           readingTime={post.readingTime}

@@ -10,6 +10,10 @@ import { type Language } from "@/lib/i18n";
 import { getAllPosts, getPostAvailableLanguages } from "@/lib/mdx";
 import Link from "next/link";
 
+// Force dynamic rendering in development for hot reload
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 interface HomeProps {
   params: Promise<{ lang: Language }>;
 }
@@ -33,7 +37,8 @@ export default async function Home({ params }: HomeProps) {
         {posts.map((post) => (
           <Card
             key={`${post.year}-${post.slug}`}
-            className="group relative overflow-hidden border-0 glass hover:shadow-solana transition-all duration-300 hover:-translate-y-1">
+            className="group relative overflow-hidden border-0 glass hover:shadow-solana transition-all duration-300 hover:-translate-y-1"
+          >
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
             <Link href={`/${lang}/blog/${post.slug}`} className="block">
