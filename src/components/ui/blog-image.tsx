@@ -14,8 +14,8 @@ interface BlogImageProps {
 export function BlogImage({
   src,
   alt,
-  width = 800,
-  height = 400,
+  width: _width = 800, // eslint-disable-line @typescript-eslint/no-unused-vars
+  height: _height = 400, // eslint-disable-line @typescript-eslint/no-unused-vars
   className,
   caption,
   priority = false,
@@ -26,15 +26,16 @@ export function BlogImage({
   if (caption) {
     return (
       <span className="block my-4 md:my-8 space-y-2 w-full min-w-[280px] md:min-w-[500px] overflow-hidden">
-        <span className="relative block w-full" style={{ aspectRatio: consistentAspectRatio }}>
+        <span
+          className="relative block w-full"
+          style={{ aspectRatio: consistentAspectRatio }}
+        >
           <Image
             src={src}
             alt={alt}
             fill
             priority={priority}
-            className={cn(
-              "object-contain transition-all duration-300"
-            )}
+            className={cn("object-contain transition-all duration-300")}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
           />
         </span>
@@ -47,7 +48,10 @@ export function BlogImage({
   }
 
   return (
-    <span className="relative block my-4 md:my-8 w-full min-w-[280px] md:min-w-[500px] overflow-hidden rounded-lg border" style={{ aspectRatio: consistentAspectRatio }}>
+    <span
+      className="relative block my-4 md:my-8 w-full min-w-[280px] md:min-w-[500px] overflow-hidden rounded-lg border"
+      style={{ aspectRatio: consistentAspectRatio }}
+    >
       <Image
         src={src}
         alt={alt}
@@ -55,7 +59,7 @@ export function BlogImage({
         priority={priority}
         className={cn(
           "object-contain hover:shadow-lg transition-all duration-300",
-          className
+          className,
         )}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
       />

@@ -75,10 +75,22 @@ git push -u origin feature/your-feature-name
 
 # STOP HERE - Wait for user instruction
 # The user will tell you when to:
-# - Rebase feature branch to dev
-# - Rebase dev to main
+# - Rebase feature branch to dev (MUST run build first!)
+# - Rebase dev to main (MUST run build first!)
 # - Delete feature branches
 # NEVER do these operations automatically!
+```
+
+## Build Before Rebase Rule
+
+**CRITICAL: Always run build before rebasing to dev or main!**
+
+```bash
+# Before rebasing to dev or main, ALWAYS run:
+pnpm run build
+
+# Only proceed with rebase if build passes successfully
+# If build fails, fix the issues first on the feature branch
 ```
 
 ## Git Branch Management Rules
@@ -89,7 +101,8 @@ git push -u origin feature/your-feature-name
 ❌ **DO NOT** push any branch without being asked
 ❌ **DO NOT** run `git add` without user approval
 ❌ **DO NOT** rebase feature branches to `dev` automatically
-❌ **DO NOT** rebase `dev` to `main` automatically  
+❌ **DO NOT** rebase `dev` to `main` automatically
+❌ **DO NOT** rebase without running build first
 ❌ **DO NOT** delete feature branches automatically (local or remote)
 
 ✅ **ONLY** create feature branches when working on features
@@ -98,9 +111,12 @@ git push -u origin feature/your-feature-name
 
 The user will tell you when they want to:
 - Commit and push changes (after reviewing)
-- Merge/rebase feature branch to dev
-- Merge/rebase dev to main  
+- Run build to verify changes
+- Merge/rebase feature branch to dev (after build passes)
+- Merge/rebase dev to main (after build passes)
 - Clean up feature branches
+
+**Build must pass before any rebase to dev or main!**
 
 ## Git Commit Guidelines
 
@@ -129,6 +145,8 @@ feat: implement user authentication system
 - NEVER include Claude/AI attribution in commit messages
 - NEVER commit or push changes without user review and approval
 - NEVER run git add, git commit, or git push without being asked
+- NEVER rebase branches without running build first
+- NEVER rebase to dev or main if build fails
 - NEVER rebase branches or delete branches without explicit user instruction
 - Do what has been asked; nothing more, nothing less
 - NEVER create files unless they're absolutely necessary for achieving your goal

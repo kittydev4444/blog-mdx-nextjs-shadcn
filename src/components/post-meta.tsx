@@ -7,8 +7,7 @@ import { getLanguageLabel } from "@/lib/i18n";
 interface PostMetaProps {
   date: string;
   readingTime: ReadingTimeResult;
-  year?: string;
-  variant?: "compact" | "full";
+  variant?: "full" | "compact";
   availableLanguages?: Language[];
   className?: string;
 }
@@ -16,20 +15,19 @@ interface PostMetaProps {
 export function PostMeta({
   date,
   readingTime,
-  year,
   variant = "compact",
   availableLanguages,
   className,
 }: PostMetaProps) {
   const formatDate = (
     dateString: string,
-    format: "short" | "long" = "short"
+    format: "short" | "long" = "short",
   ) => {
     return new Date(dateString).toLocaleDateString(
       "en-US",
       format === "short"
         ? { month: "short", day: "numeric", year: "numeric" }
-        : { year: "numeric", month: "long", day: "numeric" }
+        : { year: "numeric", month: "long", day: "numeric" },
     );
   };
 
@@ -46,8 +44,9 @@ export function PostMeta({
       <div
         className={cn(
           "flex items-center gap-3 text-xs text-muted-foreground/70",
-          className
-        )}>
+          className,
+        )}
+      >
         <div className="flex items-center gap-1.5">
           <Calendar className="h-3 w-3" />
           <span>{formatShortDate(date)}</span>
@@ -70,8 +69,9 @@ export function PostMeta({
     <div
       className={cn(
         "flex flex-wrap items-center gap-4 text-sm text-muted-foreground",
-        className
-      )}>
+        className,
+      )}
+    >
       <time dateTime={date} className="flex items-center gap-1.5">
         <Calendar className="h-4 w-4" />
         {formatDate(date, "long")}
@@ -88,7 +88,10 @@ export function PostMeta({
         <div className="flex items-center gap-1.5">
           <Globe className="h-4 w-4" />
           <span>
-            Available in: {availableLanguages.map(lang => getLanguageLabel(lang)).join(", ")}
+            Available in:{" "}
+            {availableLanguages
+              .map((lang) => getLanguageLabel(lang))
+              .join(", ")}
             {availableLanguages.length === 1 && " only"}
           </span>
         </div>
@@ -121,8 +124,9 @@ export function PostDate({
       <div
         className={cn(
           "shrink-0 rounded-full bg-muted/80 px-3 py-1.5 text-xs font-medium text-muted-foreground",
-          className
-        )}>
+          className,
+        )}
+      >
         <time dateTime={date}>{formatDate(date)}</time>
       </div>
     );
@@ -131,7 +135,8 @@ export function PostDate({
   return (
     <time
       dateTime={date}
-      className={cn("text-sm text-muted-foreground", className)}>
+      className={cn("text-sm text-muted-foreground", className)}
+    >
       {formatDate(date)}
     </time>
   );

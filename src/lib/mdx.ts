@@ -6,7 +6,7 @@ import { calculateReadingTime, type ReadingTimeResult } from "./reading-time";
 const contentDirectory = path.join(process.cwd(), "content");
 
 // Cache busting for development - forces re-read of files
-let contentCache = new Map<string, { content: BlogPost; mtime: number }>();
+const contentCache = new Map<string, { content: BlogPost; mtime: number }>();
 
 function shouldUseCache(filePath: string, cachedMtime: number): boolean {
   if (process.env.NODE_ENV !== "development") return true;
