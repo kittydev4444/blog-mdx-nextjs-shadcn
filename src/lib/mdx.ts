@@ -30,6 +30,7 @@ export interface BlogPost {
   order: number;
   readingTime: ReadingTimeResult;
   published: boolean;
+  featured: boolean;
   language: Language;
 }
 
@@ -104,6 +105,7 @@ export function getPostsFromYear(
       order,
       readingTime,
       published: data.published ?? false,
+      featured: data.featured ?? false,
       language,
     };
 
@@ -182,4 +184,13 @@ export function getPostAvailableLanguages(
   });
 
   return availableLanguages;
+}
+
+export function getFeaturedPosts(
+  language: Language = "en",
+  limit?: number,
+): BlogPost[] {
+  const allPosts = getAllPosts(language, false);
+  const featured = allPosts.filter((post) => post.featured);
+  return limit ? featured.slice(0, limit) : featured;
 }
