@@ -64,7 +64,11 @@ Components are configured with:
 # Create and switch to new feature branch
 git checkout -b feature/your-feature-name
 
-# After completing work, commit and push
+# Make code changes and STOP
+# Let the user review the changes first
+# NEVER commit or push without user approval
+
+# After user reviews and approves, they will tell you to commit and push:
 git add .
 git commit -m "feat: your commit message"
 git push -u origin feature/your-feature-name
@@ -81,15 +85,19 @@ git push -u origin feature/your-feature-name
 
 **NEVER do these operations without explicit user instruction:**
 
+❌ **DO NOT** commit changes without user review and approval
+❌ **DO NOT** push any branch without being asked
+❌ **DO NOT** run `git add` without user approval
 ❌ **DO NOT** rebase feature branches to `dev` automatically
 ❌ **DO NOT** rebase `dev` to `main` automatically  
 ❌ **DO NOT** delete feature branches automatically (local or remote)
-❌ **DO NOT** push to `main` or `dev` without being asked
 
-✅ **ONLY** create feature branches and push them when working on features
-✅ **WAIT** for user to explicitly ask before rebasing or deleting branches
+✅ **ONLY** create feature branches when working on features
+✅ **ONLY** make code changes and show them to user for review
+✅ **WAIT** for user to explicitly ask before committing, pushing, rebasing, or deleting
 
 The user will tell you when they want to:
+- Commit and push changes (after reviewing)
 - Merge/rebase feature branch to dev
 - Merge/rebase dev to main  
 - Clean up feature branches
@@ -119,8 +127,9 @@ feat: implement user authentication system
 
 - ALWAYS create a new branch before making any code changes or new features
 - NEVER include Claude/AI attribution in commit messages
+- NEVER commit or push changes without user review and approval
+- NEVER run git add, git commit, or git push without being asked
 - NEVER rebase branches or delete branches without explicit user instruction
-- NEVER push to main or dev without being asked
 - Do what has been asked; nothing more, nothing less
 - NEVER create files unless they're absolutely necessary for achieving your goal
 - ALWAYS prefer editing an existing file to creating a new one
