@@ -38,20 +38,28 @@ export function StickySection({
 }: StickySectionProps) {
   const stickyElement = (
     <div className={cn("flex-1", stickyClassName)}>
-      <div className="lg:sticky lg:top-8">
-        {stickyContent}
-      </div>
+      <div className="lg:sticky lg:top-8">{stickyContent}</div>
     </div>
   );
 
   const contentElement = (
-    <div className={cn("flex-1 space-y-6 prose prose-zinc dark:prose-invert max-w-none", contentClassName)}>
+    <div
+      className={cn(
+        "flex-1 space-y-6 prose prose-zinc dark:prose-invert max-w-none",
+        contentClassName,
+      )}
+    >
       {children}
     </div>
   );
 
   return (
-    <div className={cn("sticky-section-full-width flex flex-col lg:flex-row gap-8 my-12 lg:min-h-screen not-prose", className)}>
+    <div
+      className={cn(
+        "sticky-section-full-width flex flex-col lg:flex-row gap-8 my-12 not-prose",
+        className,
+      )}
+    >
       {side === "left" ? (
         <>
           {stickyElement}
@@ -121,8 +129,15 @@ export function StickyWrapper({
   // If still no separation, use StickySection behavior
   if (!stickyContent) {
     return (
-      <div className={cn("sticky-section-full-width my-12 not-prose", className)}>
-        <div className={cn("prose prose-zinc dark:prose-invert max-w-4xl mx-auto", contentClassName)}>
+      <div
+        className={cn("sticky-section-full-width my-12 not-prose", className)}
+      >
+        <div
+          className={cn(
+            "prose prose-zinc dark:prose-invert max-w-4xl mx-auto",
+            contentClassName,
+          )}
+        >
           {children}
         </div>
       </div>
@@ -138,13 +153,23 @@ export function StickyWrapper({
   );
 
   const contentElement = (
-    <div className={cn("flex-1 space-y-6 prose prose-zinc dark:prose-invert max-w-none", contentClassName)}>
+    <div
+      className={cn(
+        "flex-1 space-y-6 prose prose-zinc dark:prose-invert max-w-none",
+        contentClassName,
+      )}
+    >
       {scrollingContent}
     </div>
   );
 
   return (
-    <div className={cn("sticky-section-full-width flex flex-col lg:flex-row gap-8 my-12 lg:min-h-screen not-prose", className)}>
+    <div
+      className={cn(
+        "sticky-section-full-width flex flex-col lg:flex-row gap-8 my-12 not-prose",
+        className,
+      )}
+    >
       {side === "left" ? (
         <>
           {stickyElement}
@@ -159,5 +184,3 @@ export function StickyWrapper({
     </div>
   );
 }
-
-
